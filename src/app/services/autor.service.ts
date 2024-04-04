@@ -21,23 +21,23 @@ export class AutorService {
       }
     }
 
-    return this.httpClient.get<Autor[]>(`${this.baseUrl}`, {params});
+    return this.httpClient.get<Autor[]>(`${this.baseUrl}/getAll/`, {params});
   }
 
   findById(id: string): Observable<Autor> {
-    return this.httpClient.get<Autor>(`${this.baseUrl}/${id}`);
+    return this.httpClient.get<Autor>(`${this.baseUrl}/search/${id}`);
   }
 
   insert(autor: Autor): Observable<Autor> {
-    return this.httpClient.post<Autor>(this.baseUrl, autor);
+    return this.httpClient.post<Autor>(`${this.baseUrl}/insert/`, autor);
   }
   
   update(autor: Autor): Observable<Autor> {
-    return this.httpClient.put<Autor>(`${this.baseUrl}/${autor.id}`, autor);
+    return this.httpClient.put<Autor>(`${this.baseUrl}/update/${autor.id}`, autor);
   }
 
   delete(autor: Autor): Observable<any> {
-    return this.httpClient.delete<any>(`${this.baseUrl}/${autor.id}`);
+    return this.httpClient.delete<any>(`${this.baseUrl}/DeleteForId/${autor.id}`);
   }
 
   count(): Observable<number> {

@@ -21,23 +21,23 @@ export class LivroService {
       }
     }
 
-    return this.httpClient.get<Livro[]>(`${this.baseUrl}`, {params});
+    return this.httpClient.get<Livro[]>(`${this.baseUrl}/getAll/`, {params});
   }
 
   findById(id: string): Observable<Livro> {
-    return this.httpClient.get<Livro>(`${this.baseUrl}/${id}`);
+    return this.httpClient.get<Livro>(`${this.baseUrl}/search/${id}`);
   }
 
   insert(livro: Livro): Observable<Livro> {
-    return this.httpClient.post<Livro>(this.baseUrl, livro);
+    return this.httpClient.post<Livro>(`${this.baseUrl}/insert/`, livro);
   }
   
   update(livro: Livro): Observable<Livro> {
-    return this.httpClient.put<Livro>(`${this.baseUrl}/${livro.id}`, livro);
+    return this.httpClient.put<Livro>(`${this.baseUrl}/update/${livro.id}`, livro);
   }
 
   delete(livro: Livro): Observable<any> {
-    return this.httpClient.delete<any>(`${this.baseUrl}/${livro.id}`);
+    return this.httpClient.delete<any>(`${this.baseUrl}/DeleteForId/${livro.id}`);
   }
 
   count(): Observable<number> {

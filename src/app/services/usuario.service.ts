@@ -21,23 +21,23 @@ export class UsuarioService {
       }
     }
 
-    return this.httpClient.get<Usuario[]>(`${this.baseUrl}`, {params});
+    return this.httpClient.get<Usuario[]>(`${this.baseUrl}/getAll/`, {params});
   }
 
   findById(id: string): Observable<Usuario> {
-    return this.httpClient.get<Usuario>(`${this.baseUrl}/${id}`);
+    return this.httpClient.get<Usuario>(`${this.baseUrl}/search/${id}`);
   }
 
   insert(usuario: Usuario): Observable<Usuario> {
-    return this.httpClient.post<Usuario>(this.baseUrl, usuario);
+    return this.httpClient.post<Usuario>(`${this.baseUrl}/insert/`, usuario);
   }
   
   update(usuario: Usuario): Observable<Usuario> {
-    return this.httpClient.put<Usuario>(`${this.baseUrl}/${usuario.id}`, usuario);
+    return this.httpClient.put<Usuario>(`${this.baseUrl}/update/${usuario.id}`, usuario);
   }
 
   delete(usuario: Usuario): Observable<any> {
-    return this.httpClient.delete<any>(`${this.baseUrl}/${usuario.id}`);
+    return this.httpClient.delete<any>(`${this.baseUrl}/DeleteForId/${usuario.id}`);
   }
 
   count(): Observable<number> {

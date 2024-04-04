@@ -21,23 +21,23 @@ export class EditoraService {
       }
     }
 
-    return this.httpClient.get<Editora[]>(`${this.baseUrl}`, {params});
+    return this.httpClient.get<Editora[]>(`${this.baseUrl}/getAll/`, {params});
   }
 
   findById(id: string): Observable<Editora> {
-    return this.httpClient.get<Editora>(`${this.baseUrl}/${id}`);
+    return this.httpClient.get<Editora>(`${this.baseUrl}/search/${id}`);
   }
 
   insert(editora: Editora): Observable<Editora> {
-    return this.httpClient.post<Editora>(this.baseUrl, editora);
+    return this.httpClient.post<Editora>(`${this.baseUrl}/insert/`, editora);
   }
   
   update(editora: Editora): Observable<Editora> {
-    return this.httpClient.put<Editora>(`${this.baseUrl}/${editora.id}`, editora);
+    return this.httpClient.put<Editora>(`${this.baseUrl}/${editora.id}/update/`, editora);
   }
 
   delete(editora: Editora): Observable<any> {
-    return this.httpClient.delete<any>(`${this.baseUrl}/${editora.id}`);
+    return this.httpClient.delete<any>(`${this.baseUrl}/DeleteForId/${editora.id}`);
   }
 
   count(): Observable<number> {

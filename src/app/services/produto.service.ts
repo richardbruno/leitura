@@ -7,7 +7,7 @@ import { Produto } from '../models/produto.model';
   providedIn: 'root'
 })
 export class ProdutoService {
-  private baseUrl = 'http://localhost:8080/produto';
+  private baseUrl = 'http://localhost:8080/luminaria';
 
   constructor(private httpClient: HttpClient) {  }
 
@@ -21,23 +21,23 @@ export class ProdutoService {
       }
     }
 
-    return this.httpClient.get<Produto[]>(`${this.baseUrl}`, {params});
+    return this.httpClient.get<Produto[]>(`${this.baseUrl}/getAll/`, {params});
   }
 
   findById(id: string): Observable<Produto> {
-    return this.httpClient.get<Produto>(`${this.baseUrl}/${id}`);
+    return this.httpClient.get<Produto>(`${this.baseUrl}/search/${id}`);
   }
 
   insert(produto: Produto): Observable<Produto> {
-    return this.httpClient.post<Produto>(this.baseUrl, produto);
+    return this.httpClient.post<Produto>(`${this.baseUrl}/insert/`, produto);
   }
   
   update(produto: Produto): Observable<Produto> {
-    return this.httpClient.put<Produto>(`${this.baseUrl}/${produto.id}`, produto);
+    return this.httpClient.put<Produto>(`${this.baseUrl}/update/${produto.id}`, produto);
   }
 
   delete(produto: Produto): Observable<any> {
-    return this.httpClient.delete<any>(`${this.baseUrl}/${produto.id}`);
+    return this.httpClient.delete<any>(`${this.baseUrl}DeleteForId/${produto.id}`);
   }
 
   count(): Observable<number> {
