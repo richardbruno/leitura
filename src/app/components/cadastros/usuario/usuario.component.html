@@ -1,0 +1,141 @@
+<div class="background">
+    <div>
+        <mat-toolbar color="primary" class="toolbar-title">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="menu" class="menu"></mat-icon>
+            
+            <button mat-button [matMenuTriggerFor]="menu">Categorias</button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item>Aventura e Ação</button>
+                <button mat-menu-item>Biografias e Memórias</button>
+                <button mat-menu-item>Ficção Científica</button>
+                <button mat-menu-item>Literatura Clássica</button>
+                <button mat-menu-item>Mistério e Suspense</button>
+            </mat-menu>
+
+            <mat-form-field class="barraPesquisa">
+                <input matInput placeholder="Pesquisar...">
+                <mat-icon matSuffix class="iconPesquisar">search</mat-icon>
+            </mat-form-field>
+
+            <mat-icon class="iconPerfil">person</mat-icon>
+            <mat-icon class="iconCesta">shopping_basket</mat-icon>
+        </mat-toolbar>
+    
+    </div>
+
+    <div class="formDivCadastro">
+
+        <div>
+            <mat-card class="matcardForm">
+
+                <mat-card-content class="titulo">Cadastro de Usuário</mat-card-content>
+                <mat-card class="addImage">
+                
+                </mat-card>
+                <div class="divForm">
+                    <mat-card-content>
+                        <form [formGroup]="formGroup">
+                            <mat-form-field appearance="fill" class="full-width-input">
+                                <mat-label>Nome de Usuário:</mat-label>
+                                <input matInput type="text" formControlName="nomeUsuario" class="input">
+                                <mat-error *ngIf="formGroup.get('nomeUsuario')?.errors && 
+                                                formGroup.get('nomeUsuario')?.touched">
+                                    {{getErrorMessage('nomeUsuario', formGroup.get('nomeUsuario')?.errors)}}
+
+                                    @if (formGroup.get('nomeUsuario')?.hasError('apiError')) {
+                                        <span>{{ formGroup.get('nomeUsuario')?.getError('apiError') }}</span>
+                                    }
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="fill" class="full-width-input">
+                                <mat-label>CPF:</mat-label>
+                                <input matInput type="number" formControlName="cpf" class="input">
+                                <mat-error *ngIf="formGroup.get('cpf')?.errors && 
+                                                formGroup.get('cpf')?.touched">
+                                    {{getErrorMessage('cpf', formGroup.get('cpf')?.errors)}}
+
+                                    @if (formGroup.get('cpf')?.hasError('apiError')) {
+                                        <span>{{ formGroup.get('cpf')?.getError('apiError') }}</span>
+                                    }
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="fill" class="full-width-input">
+                                <mat-label>E-mail:</mat-label>
+                                <input matInput type="text" formControlName="email" class="input">
+                                <mat-error *ngIf="formGroup.get('email')?.errors && 
+                                                formGroup.get('email')?.touched">
+                                    {{getErrorMessage('email', formGroup.get('email')?.errors)}}
+
+                                    @if (formGroup.get('email')?.hasError('apiError')) {
+                                        <span>{{ formGroup.get('email')?.getError('apiError') }}</span>
+                                    }
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="fill" class="full-width-input">
+                                <mat-label>Senha:</mat-label>
+                                <input matInput type="text" formControlName="senha" class="input">
+                                <mat-error *ngIf="formGroup.get('senha')?.errors && 
+                                                formGroup.get('senha')?.touched">
+                                    {{getErrorMessage('senha', formGroup.get('senha')?.errors)}}
+
+                                    @if (formGroup.get('senha')?.hasError('apiError')) {
+                                        <span>{{ formGroup.get('senha')?.getError('apiError') }}</span>
+                                    }
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="fill" class="full-width-input">
+                                <mat-label>Telefone:</mat-label>
+                                <input matInput type="text" formControlName="telefone" class="input">
+                                <mat-error *ngIf="formGroup.get('telefone')?.errors && 
+                                                formGroup.get('telefone')?.touched">
+                                    {{getErrorMessage('telefone', formGroup.get('telefone')?.errors)}}
+
+                                    @if (formGroup.get('telefone')?.hasError('apiError')) {
+                                        <span>{{ formGroup.get('telefone')?.getError('apiError') }}</span>
+                                    }
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="fill" class="full-width-input">
+                                <mat-label>CEP:</mat-label>
+                                <input matInput type="number" formControlName="cep" class="input">
+                                <mat-error *ngIf="formGroup.get('cep')?.errors && 
+                                                formGroup.get('cep')?.touched">
+                                    {{getErrorMessage('cep', formGroup.get('cep')?.errors)}}
+
+                                    @if (formGroup.get('cep')?.hasError('apiError')) {
+                                        <span>{{ formGroup.get('cep')?.getError('apiError') }}</span>
+                                    }
+                                </mat-error>
+                            </mat-form-field>
+
+                        </form>
+                    </mat-card-content>
+                </div>
+                <mat-card-actions>
+                    <button mat-raised-button 
+                            color="primary" 
+                            (click)="cadastrar()">
+                        Cadastrar 
+                    </button>
+                    <button mat-raised-button  
+                            routerLink="/produto"> 
+                        Cancelar 
+                    </button>
+
+                </mat-card-actions>
+
+            </mat-card>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="rodape">
+    <div class="tituloRodape">©Universidade Estadual do Tocantins</div>
+</div>

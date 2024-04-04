@@ -1,0 +1,118 @@
+<div class="background">
+    <div>
+        <mat-toolbar color="primary" class="toolbar-title">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="menu" class="menu"></mat-icon>
+            
+            <button mat-button [matMenuTriggerFor]="menu">Categorias</button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item>Aventura e Ação</button>
+                <button mat-menu-item>Biografias e Memórias</button>
+                <button mat-menu-item>Ficção Científica</button>
+                <button mat-menu-item>Literatura Clássica</button>
+                <button mat-menu-item>Mistério e Suspense</button>
+            </mat-menu>
+
+            <mat-form-field class="barraPesquisa">
+                <input matInput placeholder="Pesquisar...">
+                <mat-icon matSuffix class="iconPesquisar">search</mat-icon>
+            </mat-form-field>
+
+            <mat-icon class="iconPerfil">person</mat-icon>
+            <mat-icon class="iconCesta">shopping_basket</mat-icon>
+        </mat-toolbar>
+    
+    </div>
+
+    <div class="formDivCadastro">
+
+        <div>
+            <mat-card class="matcardForm">
+
+                <mat-card-content class="titulo">Cadastre Um Novo Produto</mat-card-content>
+                <mat-card class="addImage">
+                <mat-icon class="iconFoto">perm_media</mat-icon>
+
+                <button mat-flat-button class="botao">Enviar Imagem</button>
+                
+                </mat-card>
+                <div class="divForm">
+                    <mat-card-content>
+                        <form [formGroup]="formGroup">
+                            <mat-form-field appearance="fill" class="full-width-input">
+                                <mat-label>Nome Para o Produto:</mat-label>
+                                <input matInput type="text" formControlName="nomeProduto" class="input">
+                                <mat-error *ngIf="formGroup.get('nomeProduto')?.errors && 
+                                                formGroup.get('nomeProduto')?.touched">
+                                    {{getErrorMessage('nomeProduto', formGroup.get('nomeProduto')?.errors)}}
+
+                                    @if (formGroup.get('nomeProduto')?.hasError('apiError')) {
+                                        <span>{{ formGroup.get('nomeProduto')?.getError('apiError') }}</span>
+                                    }
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="fill" class="full-width-input">
+                                <mat-label>Descrição:</mat-label>
+                                <textarea matInput type="text" formControlName="descricao" class="input"></textarea>
+                                <mat-error *ngIf="formGroup.get('descricao')?.errors && 
+                                                formGroup.get('descricao')?.touched">
+                                    {{getErrorMessage('descricao', formGroup.get('descricao')?.errors)}}
+
+                                    @if (formGroup.get('descricao')?.hasError('apiError')) {
+                                        <span>{{ formGroup.get('descricao')?.getError('apiError') }}</span>
+                                    }
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="fill" class="full-width-input">
+                                <mat-label>Estoque:</mat-label>
+                                <input matInput type="number" formControlName="estoque" class="input">
+                                <mat-error *ngIf="formGroup.get('estoque')?.errors && 
+                                                formGroup.get('estoque')?.touched">
+                                    {{getErrorMessage('estoque', formGroup.get('estoque')?.errors)}}
+
+                                    @if (formGroup.get('estoque')?.hasError('apiError')) {
+                                        <span>{{ formGroup.get('estoque')?.getError('apiError') }}</span>
+                                    }
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="fill" class="full-width-input">
+                                <mat-label>Fornecedor:</mat-label>
+                                <input matInput type="text" formControlName="fornecedor" class="input">
+                                <mat-error *ngIf="formGroup.get('fornecedor')?.errors && 
+                                                formGroup.get('fornecedor')?.touched">
+                                    {{getErrorMessage('fornecedor', formGroup.get('fornecedor')?.errors)}}
+
+                                    @if (formGroup.get('fornecedor')?.hasError('apiError')) {
+                                        <span>{{ formGroup.get('fornecedor')?.getError('apiError') }}</span>
+                                    }
+                                </mat-error>
+                            </mat-form-field>
+
+                        </form>
+                    </mat-card-content>
+                </div>
+                <mat-card-actions>
+                    <button mat-raised-button 
+                            color="primary" 
+                            (click)="cadastrar()">
+                        Cadastrar 
+                    </button>
+                    <button mat-raised-button  
+                            routerLink="/produto"> 
+                        Cancelar 
+                    </button>
+
+                </mat-card-actions>
+
+            </mat-card>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="rodape">
+    <div class="tituloRodape">©Universidade Estadual do Tocantins</div>
+</div>
