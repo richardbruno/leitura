@@ -61,22 +61,20 @@
                                 </mat-error>
                             </mat-form-field>
 
-                            <mat-form-field appearance="fill" class="full-width-input">
-                                <mat-label>E-mail:</mat-label>
-                                <input matInput type="text" formControlName="email" class="input">
-                                <mat-error *ngIf="formGroup.get('email')?.errors && 
-                                                formGroup.get('email')?.touched">
-                                    {{getErrorMessage('email', formGroup.get('email')?.errors)}}
-
-                                    @if (formGroup.get('email')?.hasError('apiError')) {
-                                        <span>{{ formGroup.get('email')?.getError('apiError') }}</span>
-                                    }
-                                </mat-error>
+                            <mat-form-field class="full-width-input">
+                                <mat-label>Email</mat-label>
+                                <input type="email" matInput [formControl]="email" placeholder="Ex. paty@gmail.com">
+                                @if (email.hasError('email') && !email.hasError('required')) {
+                                  <mat-error>Por favor, insira um endereço de e-mail válido</mat-error>
+                                }
+                                @if (email.hasError('required')) {
+                                  <mat-error>Insira seu e-mail</mat-error>
+                                }
                             </mat-form-field>
 
                             <mat-form-field appearance="fill" class="full-width-input">
                                 <mat-label>Senha:</mat-label>
-                                <input matInput type="text" formControlName="senha" class="input">
+                                <input matInput type="password" formControlName="senha" class="input">
                                 <mat-error *ngIf="formGroup.get('senha')?.errors && 
                                                 formGroup.get('senha')?.touched">
                                     {{getErrorMessage('senha', formGroup.get('senha')?.errors)}}
@@ -89,7 +87,7 @@
 
                             <mat-form-field appearance="fill" class="full-width-input">
                                 <mat-label>Telefone:</mat-label>
-                                <input matInput type="text" formControlName="telefone" class="input">
+                                <input matInput type="number" formControlName="telefone" class="input">
                                 <mat-error *ngIf="formGroup.get('telefone')?.errors && 
                                                 formGroup.get('telefone')?.touched">
                                     {{getErrorMessage('telefone', formGroup.get('telefone')?.errors)}}

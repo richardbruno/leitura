@@ -1,0 +1,128 @@
+<div class="background">
+    <div>
+        <mat-toolbar color="primary" class="toolbar-title">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="menu" class="menu"></mat-icon>
+            
+            <button mat-button [matMenuTriggerFor]="menu">Categorias</button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item>Aventura e Ação</button>
+                <button mat-menu-item>Biografias e Memórias</button>
+                <button mat-menu-item>Ficção Científica</button>
+                <button mat-menu-item>Literatura Clássica</button>
+                <button mat-menu-item>Mistério e Suspense</button>
+            </mat-menu>
+
+            <mat-form-field class="barraPesquisa">
+                <input matInput type="search" placeholder="Pesquisar...">
+                <mat-icon matSuffix class="iconPesquisar">search</mat-icon>
+            </mat-form-field>
+
+            <mat-icon class="iconPerfil">person</mat-icon>
+            <mat-icon class="iconCesta">shopping_basket</mat-icon>
+        </mat-toolbar>
+    
+    </div>
+
+    <div class="formDivCadastro">
+
+        <div>
+            <mat-card class="matcardForm">
+
+                <mat-card-content class="titulo">Cadastro de Editoras Literários</mat-card-content>
+                <mat-card class="addImage">
+                
+                </mat-card>
+                <div class="divForm">
+                    <mat-card-content>
+                        <form [formGroup]="formGroup">
+                            <mat-form-field appearance="fill" class="full-width-input">
+                                <mat-label>Nome da Editora:</mat-label>
+                                <input matInput type="text" formControlName="nomeEditora" class="input">
+                                <mat-error *ngIf="formGroup.get('nomeEditora')?.errors && 
+                                                formGroup.get('nomeEditora')?.touched">
+                                    {{getErrorMessage('nomeEditora', formGroup.get('nomeEditora')?.errors)}}
+
+                                    @if (formGroup.get('nomeEditora')?.hasError('apiError')) {
+                                        <span>{{ formGroup.get('nomeEditora')?.getError('apiError') }}</span>
+                                    }
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="fill" class="full-width-input">
+                                <mat-label>Descrição</mat-label>
+                                <textarea matInput type="text" formControlName="descricaoEditora" class="input"></textarea>
+                                <mat-error *ngIf="formGroup.get('descricaoEditora')?.errors && 
+                                                formGroup.get('descricaoEditora')?.touched">
+                                    {{getErrorMessage('descricaoEditora', formGroup.get('descricaoEditora')?.errors)}}
+
+                                    @if (formGroup.get('descricaoEditora')?.hasError('apiError')) {
+                                        <span>{{ formGroup.get('descricaoEditora')?.getError('apiError') }}</span>
+                                    }
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="fill" class="full-width-input">
+                                <mat-label>Data de Fundação:</mat-label>
+                                <input matInput type="date" formControlName="dataFundacao" class="input">
+                                <mat-error *ngIf="formGroup.get('dataFundacao')?.errors && 
+                                                formGroup.get('dataFundacao')?.touched">
+                                    {{getErrorMessage('dataFundacao', formGroup.get('dataFundacao')?.errors)}}
+
+                                    @if (formGroup.get('dataFundacao')?.hasError('apiError')) {
+                                        <span>{{ formGroup.get('dataFundacao')?.getError('apiError') }}</span>
+                                    }
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="fill" class="full-width-input">
+                                <mat-label>País de Origem:</mat-label>
+                                <input matInput type="text" formControlName="paisOrigem" class="input">
+                                <mat-error *ngIf="formGroup.get('paisOrigem')?.errors && 
+                                                formGroup.get('paisOrigem')?.touched">
+                                    {{getErrorMessage('paisOrigem', formGroup.get('paisOrigem')?.errors)}}
+
+                                    @if (formGroup.get('paisOrigem')?.hasError('apiError')) {
+                                        <span>{{ formGroup.get('paisOrigem')?.getError('apiError') }}</span>
+                                    }
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="fill" class="full-width-input">
+                                <mat-label>Site:</mat-label>
+                                <input matInput type="text" formControlName="site" class="input">
+                                <mat-error *ngIf="formGroup.get('site')?.errors && 
+                                                formGroup.get('site')?.touched">
+                                    {{getErrorMessage('site', formGroup.get('site')?.errors)}}
+
+                                    @if (formGroup.get('site')?.hasError('apiError')) {
+                                        <span>{{ formGroup.get('site')?.getError('apiError') }}</span>
+                                    }
+                                </mat-error>
+                            </mat-form-field>
+
+                        </form>
+                    </mat-card-content>
+                </div>
+                <mat-card-actions>
+                    <button mat-raised-button 
+                            color="primary" 
+                            (click)="cadastrar()">
+                        Cadastrar 
+                    </button>
+                    <button mat-raised-button  
+                            routerLink="/editora/list"> 
+                        Cancelar 
+                    </button>
+
+                </mat-card-actions>
+
+            </mat-card>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="rodape">
+    <div class="tituloRodape">©Universidade Estadual do Tocantins</div>
+</div>

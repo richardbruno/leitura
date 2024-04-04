@@ -1,0 +1,154 @@
+<div class="background">
+    <div>
+        <mat-toolbar color="primary" class="toolbar-title">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="menu" class="menu"></mat-icon>
+            
+            <button mat-button [matMenuTriggerFor]="menu">Categorias</button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item>Aventura e Ação</button>
+                <button mat-menu-item>Biografias e Memórias</button>
+                <button mat-menu-item>Ficção Científica</button>
+                <button mat-menu-item>Literatura Clássica</button>
+                <button mat-menu-item>Mistério e Suspense</button>
+            </mat-menu>
+
+            <mat-form-field class="barraPesquisa">
+                <input matInput type="search" placeholder="Pesquisar...">
+                <mat-icon matSuffix class="iconPesquisar">search</mat-icon>
+            </mat-form-field>
+
+            <mat-icon class="iconPerfil">person</mat-icon>
+            <mat-icon class="iconCesta">shopping_basket</mat-icon>
+        </mat-toolbar>
+    
+    </div>
+
+    <div class="formDivCadastro">
+
+        <div>
+            <mat-card class="matcardForm">
+
+                <mat-card-content class="titulo">Cadastro de Autores Literários</mat-card-content>
+                <mat-card class="addImage">
+                
+                </mat-card>
+                <div class="divForm">
+                    <mat-card-content>
+                        <form [formGroup]="formGroup">
+                            <mat-form-field appearance="fill" class="full-width-input">
+                                <mat-label>Nome do Autor:</mat-label>
+                                <input matInput type="text" formControlName="nomeAutor" class="input">
+                                <mat-error *ngIf="formGroup.get('nomeAutor')?.errors && 
+                                                formGroup.get('nomeAutor')?.touched">
+                                    {{getErrorMessage('nomeAutor', formGroup.get('nomeAutor')?.errors)}}
+
+                                    @if (formGroup.get('nomeAutor')?.hasError('apiError')) {
+                                        <span>{{ formGroup.get('nomeAutor')?.getError('apiError') }}</span>
+                                    }
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="fill" class="full-width-input">
+                                <mat-label>Biografia</mat-label>
+                                <textarea matInput type="text" formControlName="biografia" class="input"></textarea>
+                                <mat-error *ngIf="formGroup.get('biografia')?.errors && 
+                                                formGroup.get('biografia')?.touched">
+                                    {{getErrorMessage('biografia', formGroup.get('biografia')?.errors)}}
+
+                                    @if (formGroup.get('biografia')?.hasError('apiError')) {
+                                        <span>{{ formGroup.get('biografia')?.getError('apiError') }}</span>
+                                    }
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="fill" class="full-width-input">
+                                <mat-label>Data de Nascimento:</mat-label>
+                                <input matInput type="date" formControlName="dataNascimento" class="input">
+                                <mat-error *ngIf="formGroup.get('dataNascimento')?.errors && 
+                                                formGroup.get('dataNascimento')?.touched">
+                                    {{getErrorMessage('dataNascimento', formGroup.get('dataNascimento')?.errors)}}
+
+                                    @if (formGroup.get('dataNascimento')?.hasError('apiError')) {
+                                        <span>{{ formGroup.get('dataNascimento')?.getError('apiError') }}</span>
+                                    }
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="fill" class="full-width-input">
+                                <mat-label>Nacionalidade:</mat-label>
+                                <input matInput type="text" formControlName="nacionalidade" class="input">
+                                <mat-error *ngIf="formGroup.get('nacionalidade')?.errors && 
+                                                formGroup.get('nacionalidade')?.touched">
+                                    {{getErrorMessage('nacionalidade', formGroup.get('nacionalidade')?.errors)}}
+
+                                    @if (formGroup.get('nacionalidade')?.hasError('apiError')) {
+                                        <span>{{ formGroup.get('nacionalidade')?.getError('apiError') }}</span>
+                                    }
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="fill" class="full-width-input">
+                                <mat-label>Gênero Literário:</mat-label>
+                                <input matInput type="text" formControlName="generoLiterario" class="input">
+                                <mat-error *ngIf="formGroup.get('generoLiterario')?.errors && 
+                                                formGroup.get('generoLiterario')?.touched">
+                                    {{getErrorMessage('generoLiterario', formGroup.get('generoLiterario')?.errors)}}
+
+                                    @if (formGroup.get('generoLiterario')?.hasError('apiError')) {
+                                        <span>{{ formGroup.get('generoLiterario')?.getError('apiError') }}</span>
+                                    }
+                                </mat-error>
+                            </mat-form-field>
+
+                           
+                            <mat-form-field class="full-width-input">
+                                <mat-label>Email:</mat-label>
+                                <input type="email" matInput [formControl]="email" placeholder="Ex. paty@gmail.com">
+                                @if (email.hasError('email') && !email.hasError('required')) {
+                                  <mat-error>Por favor, insira um endereço de e-mail válido</mat-error>
+                                }
+                                @if (email.hasError('required')) {
+                                  <mat-error>Insira seu e-mail</mat-error>
+                                }
+                              </mat-form-field>
+                            
+
+                            <mat-form-field appearance="fill" class="full-width-input">
+                                <mat-label>Senha:</mat-label>
+                                <input matInput type="password" formControlName="senha" class="input">
+                                <mat-error *ngIf="formGroup.get('senha')?.errors && 
+                                                formGroup.get('senha')?.touched">
+                                    {{getErrorMessage('senha', formGroup.get('senha')?.errors)}}
+
+                                    @if (formGroup.get('senha')?.hasError('apiError')) {
+                                        <span>{{ formGroup.get('senha')?.getError('apiError') }}</span>
+                                    }
+                                </mat-error>
+                            </mat-form-field>
+
+                        </form>
+                    </mat-card-content>
+                </div>
+                <mat-card-actions>
+                    <button mat-raised-button 
+                            color="primary" 
+                            (click)="cadastrar()">
+                        Cadastrar 
+                    </button>
+                    <button mat-raised-button  
+                            routerLink="/usuario/list"> 
+                        Cancelar 
+                    </button>
+
+                </mat-card-actions>
+
+            </mat-card>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="rodape">
+    <div class="tituloRodape">©Universidade Estadual do Tocantins</div>
+</div>

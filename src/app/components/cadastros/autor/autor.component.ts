@@ -3,12 +3,12 @@ import { FormBuilder,FormControl,FormsModule, FormGroup,FormGroupDirective,NgFor
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { UsuarioService } from '../../../services/usuario.service';
+import { AutorService } from '../../../services/autor.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { NgIf } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { Usuario } from '../../../models/usuario.model';
+import { Autor } from '../../../models/autor.model';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatIconRegistry, MatIconModule} from '@angular/material/icon';
 import {DomSanitizer} from '@angular/platform-browser';
@@ -33,45 +33,48 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 }
 
 @Component({
-  selector: 'usuario',
+  selector: 'autor',
   standalone: true,
   imports: [NgIf, FormsModule, ReactiveFormsModule, MatFormFieldModule,
            MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, RouterModule,
            MatMenuModule, MatIconModule],
-  templateUrl: './usuario.component.html',
-  styleUrl: './usuario.component.css'
+  templateUrl: './autor.component.html',
+  styleUrl: './autor.component.css'
 })
-export class UsuarioComponent {
-
+export class AutorComponent {
+  
   email = new FormControl('', [Validators.required, Validators.email]);
+
   matcher = new MyErrorStateMatcher();
-    
+
   formGroup: FormGroup;
   
   constructor(private formBuilder: FormBuilder,
-    private usuarioService: UsuarioService,
+    private autorService: AutorService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private sanitizer: DomSanitizer,
-    private iconRegistry: MatIconRegistry,) {
+    private iconRegistry: MatIconRegistry,) { 
 
       iconRegistry.addSvgIconLiteral('thumbs-up', sanitizer.bypassSecurityTrustHtml(THUMBUP_ICON));
 
-      const usuario: Usuario = activatedRoute.snapshot.data['usuario'];
+      const autor: Autor = activatedRoute.snapshot.data['autor'];
       this.formGroup = formBuilder.group({
 
-        id: [(usuario && usuario.id) ? usuario.id : null],
-        nomeUsuario: [(usuario && usuario.nomeUsuario) ? usuario.nomeUsuario : '', 
+        id: [(autor && autor.id) ? autor.id : null],
+        nomeAutor: [(autor && autor.nomeAutor) ? autor.nomeAutor : '', 
               Validators.compose([Validators.required])],
-        cpf: [(usuario && usuario.cpf) ? usuario.cpf : '', 
+        biografia: [(autor && autor.biografia) ? autor.biografia : '', 
               Validators.compose([Validators.required])],
-        email: [(usuario && usuario.email) ? usuario.email : '', 
+        dataNascimento: [(autor && autor.dataNascimento) ? autor.dataNascimento : '', 
               Validators.compose([Validators.required])],
-        senha: [(usuario && usuario.senha) ? usuario.senha : '', 
+        nacionalidade: [(autor && autor.nacionalidade) ? autor.nacionalidade : '', 
               Validators.compose([Validators.required])],
-        telefone: [(usuario && usuario.telefone) ? usuario.telefone : '', 
+        generoLiterario: [(autor && autor.generoLiterario) ? autor.generoLiterario : '', 
               Validators.compose([Validators.required])],
-        cep: [(usuario && usuario.cep) ? usuario.cep : '', 
+        email: [(autor && autor.email) ? autor.email : '', 
+              Validators.compose([Validators.required])],
+        senha: [(autor && autor.senha) ? autor.senha : '', 
               Validators.compose([Validators.required])],
 
       });
@@ -82,16 +85,16 @@ export class UsuarioComponent {
     
     this.formGroup.markAllAsTouched();
     if (this.formGroup.valid) {
-      const usuario = this.formGroup.value;
+      const autor = this.formGroup.value;
 
-      const operacao = usuario.id == null
-      ? this.usuarioService.insert(usuario)
-      : this.usuarioService.update(usuario);
+      const operacao = autor.id == null
+      ? this.autorService.insert(autor)
+      : this.autorService.update(autor);
 
       operacao.subscribe({
-        next: () => this.router.navigateByUrl('/usuario'),
+        next: () => this.router.navigateByUrl('/autor'),
         error: (error: HttpErrorResponse) => {
-          console.log('Falha ao Cadastrar Usuario' + JSON.stringify(error));
+          console.log('Falha ao Cadastrar Autor' + JSON.stringify(error));
           this.tratarErros(error);
         }
       });
@@ -100,14 +103,14 @@ export class UsuarioComponent {
 
   excluir() {
     if (this.formGroup.valid) {
-      const usuario = this.formGroup.value;
-      if (usuario.id != null) {
-        this.usuarioService.delete(usuario).subscribe({
+      const autor = this.formGroup.value;
+      if (autor.id != null) {
+        this.autorService.delete(autor).subscribe({
           next: () => {
-            this.router.navigateByUrl('/usuario');
+            this.router.navigateByUrl('/autor');
           },
           error: (err) => {
-            console.log('Falha ao Excluir Usuario' + JSON.stringify(err));
+            console.log('Falha ao Excluir Autor' + JSON.stringify(err));
           }
         });
       }
@@ -129,20 +132,27 @@ export class UsuarioComponent {
         });
       };
     } else if (error.status < 400) {
-        alert(error.error?.message || 'Erro ao cadastrar usuario.');
+        alert(error.error?.message || 'Erro ao cadastrar autor.');
     } else if (error.status >= 500) {
         alert('Erro interno do servidor.');
     }
   }
 
   errorMessages: {[controlName: string]: {[errorName: string] : string}} = {
-    nomeUsuario: {
-      required: 'Insira o nome de usuario.',
+    nomeAutor: {
+      required: 'Insira o nome de autor.',
     },
-    cpf: {
-      required: 'Insira um CPF válido.',
+    biografia: {
+      required: 'Insira uma biografia.',
       apiError: ' ' 
     },
+    dataNascimento: {
+        required: 'Informe a data de nascimento do autor.',
+      },
+    nacionalidade: {
+        required: 'Insira a nacionalidade do autor.',
+        apiError: ' ' 
+      },
     email: {
       required: 'Insira seu e-mail.',
     },
@@ -150,12 +160,8 @@ export class UsuarioComponent {
       required: 'Insira uma senha forte.',
       apiError: ' ' 
     },
-    telefone: {
-      required: 'Insira seu número telefônico.',
-      apiError: ' ' 
-    },
-    cep: {
-      required: 'Insira seu CEP da sua localidade.',
+    generoLiterario: {
+      required: 'Insira o gênero literário do autor.',
       apiError: ' ' 
     },
   }

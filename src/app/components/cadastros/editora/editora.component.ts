@@ -3,12 +3,12 @@ import { FormBuilder,FormControl,FormsModule, FormGroup,FormGroupDirective,NgFor
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { UsuarioService } from '../../../services/usuario.service';
+import { EditoraService } from '../../../services/editora.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { NgIf } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { Usuario } from '../../../models/usuario.model';
+import { Editora } from '../../../models/editora.model';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatIconRegistry, MatIconModule} from '@angular/material/icon';
 import {DomSanitizer} from '@angular/platform-browser';
@@ -33,45 +33,40 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 }
 
 @Component({
-  selector: 'usuario',
+  selector: 'editora',
   standalone: true,
   imports: [NgIf, FormsModule, ReactiveFormsModule, MatFormFieldModule,
            MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, RouterModule,
            MatMenuModule, MatIconModule],
-  templateUrl: './usuario.component.html',
-  styleUrl: './usuario.component.css'
+  templateUrl: './editora.component.html',
+  styleUrl: './editora.component.css'
 })
-export class UsuarioComponent {
+export class EditoraComponent {
 
-  email = new FormControl('', [Validators.required, Validators.email]);
-  matcher = new MyErrorStateMatcher();
-    
   formGroup: FormGroup;
   
   constructor(private formBuilder: FormBuilder,
-    private usuarioService: UsuarioService,
+    private editoraService: EditoraService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private sanitizer: DomSanitizer,
-    private iconRegistry: MatIconRegistry,) {
+    private iconRegistry: MatIconRegistry,) { 
 
       iconRegistry.addSvgIconLiteral('thumbs-up', sanitizer.bypassSecurityTrustHtml(THUMBUP_ICON));
 
-      const usuario: Usuario = activatedRoute.snapshot.data['usuario'];
+      const editora: Editora = activatedRoute.snapshot.data['editora'];
       this.formGroup = formBuilder.group({
 
-        id: [(usuario && usuario.id) ? usuario.id : null],
-        nomeUsuario: [(usuario && usuario.nomeUsuario) ? usuario.nomeUsuario : '', 
+        id: [(editora && editora.id) ? editora.id : null],
+        nomeEditora: [(editora && editora.nomeEditora) ? editora.nomeEditora : '', 
               Validators.compose([Validators.required])],
-        cpf: [(usuario && usuario.cpf) ? usuario.cpf : '', 
+        descricaoEditora: [(editora && editora.descricaoEditora) ? editora.descricaoEditora : '', 
               Validators.compose([Validators.required])],
-        email: [(usuario && usuario.email) ? usuario.email : '', 
+        dataFundacao: [(editora && editora.dataFundacao) ? editora.dataFundacao : '', 
               Validators.compose([Validators.required])],
-        senha: [(usuario && usuario.senha) ? usuario.senha : '', 
+        paisOrigem: [(editora && editora.paisOrigem) ? editora.paisOrigem : '', 
               Validators.compose([Validators.required])],
-        telefone: [(usuario && usuario.telefone) ? usuario.telefone : '', 
-              Validators.compose([Validators.required])],
-        cep: [(usuario && usuario.cep) ? usuario.cep : '', 
+        site: [(editora && editora.site) ? editora.site : '', 
               Validators.compose([Validators.required])],
 
       });
@@ -82,16 +77,16 @@ export class UsuarioComponent {
     
     this.formGroup.markAllAsTouched();
     if (this.formGroup.valid) {
-      const usuario = this.formGroup.value;
+      const editora = this.formGroup.value;
 
-      const operacao = usuario.id == null
-      ? this.usuarioService.insert(usuario)
-      : this.usuarioService.update(usuario);
+      const operacao = editora.id == null
+      ? this.editoraService.insert(editora)
+      : this.editoraService.update(editora);
 
       operacao.subscribe({
-        next: () => this.router.navigateByUrl('/usuario'),
+        next: () => this.router.navigateByUrl('/editora'),
         error: (error: HttpErrorResponse) => {
-          console.log('Falha ao Cadastrar Usuario' + JSON.stringify(error));
+          console.log('Falha ao Cadastrar Editora' + JSON.stringify(error));
           this.tratarErros(error);
         }
       });
@@ -100,14 +95,14 @@ export class UsuarioComponent {
 
   excluir() {
     if (this.formGroup.valid) {
-      const usuario = this.formGroup.value;
-      if (usuario.id != null) {
-        this.usuarioService.delete(usuario).subscribe({
+      const editora = this.formGroup.value;
+      if (editora.id != null) {
+        this.editoraService.delete(editora).subscribe({
           next: () => {
-            this.router.navigateByUrl('/usuario');
+            this.router.navigateByUrl('/editora');
           },
           error: (err) => {
-            console.log('Falha ao Excluir Usuario' + JSON.stringify(err));
+            console.log('Falha ao Excluir Editora' + JSON.stringify(err));
           }
         });
       }
@@ -129,33 +124,29 @@ export class UsuarioComponent {
         });
       };
     } else if (error.status < 400) {
-        alert(error.error?.message || 'Erro ao cadastrar usuario.');
+        alert(error.error?.message || 'Erro ao cadastrar editora.');
     } else if (error.status >= 500) {
         alert('Erro interno do servidor.');
     }
   }
 
   errorMessages: {[controlName: string]: {[errorName: string] : string}} = {
-    nomeUsuario: {
-      required: 'Insira o nome de usuario.',
+    nomeEditora: {
+      required: 'Insira o nome de editora.',
     },
-    cpf: {
-      required: 'Insira um CPF válido.',
+    descricaoEditora: {
+      required: 'Insira uma descrição.',
       apiError: ' ' 
     },
-    email: {
-      required: 'Insira seu e-mail.',
-    },
-    senha: {
-      required: 'Insira uma senha forte.',
-      apiError: ' ' 
-    },
-    telefone: {
-      required: 'Insira seu número telefônico.',
-      apiError: ' ' 
-    },
-    cep: {
-      required: 'Insira seu CEP da sua localidade.',
+    dataFundacao: {
+        required: 'Informe a data de fundação da editora.',
+      },
+      paisOrigem: {
+        required: 'Insira o paíos de origem e da editora.',
+        apiError: ' ' 
+      },
+      site: {
+      required: 'Insira o site da editora.',
       apiError: ' ' 
     },
   }

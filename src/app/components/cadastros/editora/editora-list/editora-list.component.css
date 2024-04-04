@@ -1,0 +1,188 @@
+.background{
+    background-color: #F1F1F1;
+    padding-bottom: 4%;
+  }
+  .toolbar-title {
+      background-color: #009DAC;
+  }
+  
+  .menu {
+    margin-left: 40px;
+  }
+  
+  .barraPesquisa {
+    margin-top: 22px;
+    margin-left: 435px;
+   
+    border-radius: 1%;
+  
+    min-width: 150px;
+    max-width: 670px;
+    width: 100%;
+  }
+  .iconPesquisar{
+    color: black;
+  }
+  
+  .iconPerfil{
+    margin-left: 400px;
+    font-size: 180%;
+    padding-bottom: 8px;
+    padding-right: 15px;
+  }
+  
+  .iconCesta{
+    margin-left: 20px;
+    font-size: 180%;
+    padding-bottom: 10px;
+    padding-right: 15px;
+  }
+  
+  .iconFoto{
+    margin-left: 80px;
+    margin-top: 100px;
+    font-size: 1000%;
+    padding-bottom: 150px;
+    padding-right: 150px;
+  }
+  
+    .matcardForm{
+      margin-top: 80px;
+    }
+  
+    .titulo{
+      text-align: center ;
+      font-size: 30px;
+      color: #009DAC;
+      font-weight: bold;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+    
+    .addImage{
+      color: gray;
+      width: 40%;
+      margin-left: 40px;
+      margin-top: 0px;
+      box-shadow: none;
+    }
+  
+    .formCadastro {
+      min-width: 150px;
+      max-width: 500px;
+      width: 100%;
+    }
+    
+    .formInfoCadastro {
+      width: 100%;
+    }
+  
+    .toolbar-title {
+      flex: 1;
+      text-align: center;
+    }
+  
+  .full-width-input {
+      width: 60%;
+      margin-left: 75px;
+  }
+  
+  mat-card {
+      max-width: 800px;
+      margin: 2rem auto;
+  }
+  
+  mat-card-actions {
+      display: flex;
+      justify-content: flex-end;
+  }
+  
+  .form-container {
+      padding: 2rem; 
+  }
+  
+  button[mat-raised-button] {
+      width: 120px;
+      border-radius: 20px;
+      margin-right: 30px;
+      margin-bottom: 40px;
+  }
+  
+  button[mat-raised-button]:not(:last-child) {
+    width: 120px;
+    border-radius: 20px;
+    margin-right: 30px;
+    margin-bottom: 40px;
+  }
+  
+  button[mat-raised-button]:not(:last-child) {
+      margin-right: 9.5rem;
+      background-color: #009DAC;
+      border-radius: 20px;
+  }
+  button[mat-flat-button]{
+    color: white;
+    background-color: #009DAC;
+  }
+  .rodape{
+    position: fixed;
+    padding-left: 800px;
+    padding-right: 800px;
+    background-color: #009DAC;
+    padding-bottom: 50px;
+  }
+  .tituloRodape{
+    color: white;
+    font-size: 17px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+    padding-top: 40px;
+  }
+
+  .flex-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .mat-column-id {
+    width: 5em;
+    border-right: 1px solid currentColor;
+    padding-right: 24px;
+    text-align: center;
+  }
+  .mat-column-nome {
+    width: 100%;
+  }
+  .mat-column-sigla {
+    text-align: center;
+    min-width: 5em;
+  }
+  .mat-column-acao {
+    text-align: center;
+    min-width: 10em;
+  }
+
+ .mat-elevation-z8{
+    margin-right: 250px;
+    margin-bottom: 500px;
+    margin-top: 100px;
+  }
+
+  .divForm{
+    width: 80%; 
+    margin-left: 180px;
+  }
+
+  .cardTitulo{
+    background-color: #F1F1F1;
+    margin-top: 80px;
+    margin-bottom: -70px;
+    box-shadow: none;
+
+    text-align: center;
+    font-size: 30px;
+    color: #009DAC;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
