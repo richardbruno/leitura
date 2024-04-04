@@ -1,0 +1,89 @@
+<div class="background">
+    <div>
+        <mat-toolbar color="primary" class="toolbar-title">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="menu" class="menu"></mat-icon>
+            
+            <button mat-button [matMenuTriggerFor]="menu">Categorias</button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item>Aventura e Ação</button>
+                <button mat-menu-item>Biografias e Memórias</button>
+                <button mat-menu-item>Ficção Científica</button>
+                <button mat-menu-item>Literatura Clássica</button>
+                <button mat-menu-item>Mistério e Suspense</button>
+            </mat-menu>
+
+            <mat-form-field class="barraPesquisa">
+                <input matInput placeholder="Pesquisar...">
+                <mat-icon matSuffix class="iconPesquisar">search</mat-icon>
+            </mat-form-field>
+
+            <mat-icon class="iconPerfil">person</mat-icon>
+            <mat-icon class="iconCesta">shopping_basket</mat-icon>
+        </mat-toolbar>
+    
+    </div>
+
+    <div class="divForm">
+            <mat-card class="cardTitulo">Lista de Livros Cadastrados</mat-card>
+            <table mat-table [dataSource]="livros" class="mat-elevation-z8">
+                
+                <!-- Position Column -->
+                <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef> No. </th>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                </ng-container>
+            
+                <!-- Nome Column -->
+                <ng-container matColumnDef="titulo">
+                <th mat-header-cell *matHeaderCellDef> Título </th>
+                <td mat-cell *matCellDef="let element"> {{element.titulo}} </td>
+                </ng-container>
+            
+                <!-- Sigla Column -->
+                <ng-container matColumnDef="preco">
+                <th mat-header-cell *matHeaderCellDef> Preço </th>
+                <td mat-cell *matCellDef="let element"> {{element.preco}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="autor">
+                    <th mat-header-cell *matHeaderCellDef> Autor </th>
+                    <td mat-cell *matCellDef="let element"> {{element.autor}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="ano_publicacao">
+                    <th mat-header-cell *matHeaderCellDef> Ano de Publicação </th>
+                    <td mat-cell *matCellDef="let element"> {{element.ano_publicacao}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="editora">
+                    <th mat-header-cell *matHeaderCellDef> Editora </th>
+                    <td mat-cell *matCellDef="let element"> {{element.editora}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="isbn">
+                    <th mat-header-cell *matHeaderCellDef> ISBN </th>
+                    <td mat-cell *matCellDef="let element"> {{element.isbn}} </td>
+                </ng-container>
+            
+                <!-- Acao Column -->
+                <ng-container matColumnDef="acao">
+                <th mat-header-cell *matHeaderCellDef> Ação </th>
+                <td mat-cell *matCellDef="let element"> 
+                
+                    <button mat-icon-button 
+                            color="warn">
+                            <mat-icon>delete</mat-icon>
+                    </button>        
+                </td>
+                </ng-container>
+            
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+    </div>
+
+</div>
+
+<div class="rodape">
+    <div class="tituloRodape">©Universidade Estadual do Tocantins</div>
+</div>

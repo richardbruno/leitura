@@ -66,6 +66,9 @@ export class ProdutoComponent {
         nomeProduto: [(produto && produto.nomeProduto) ? produto.nomeProduto : '', 
               Validators.compose([Validators.required])],
 
+        preco: [(produto && produto.preco) ? produto.preco : '', 
+              Validators.compose([Validators.required])],
+
         descricao: [(produto && produto.descricao) ? produto.descricao : '', 
               Validators.compose([Validators.required])],
 
@@ -139,6 +142,9 @@ export class ProdutoComponent {
   errorMessages: {[controlName: string]: {[errorName: string] : string}} = {
     nomeProduto: {
       required: 'Insira um nome para o produto.',
+    },
+    preco: {
+      required: 'Insira um valor para o produto.',
     },
     descricao: {
       required: 'Insira a descrição do produto.',

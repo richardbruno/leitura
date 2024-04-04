@@ -4,4 +4,5 @@ export class Produto {
     descricao!: string;
     estoque!: number;
     fornecedor!: string;
+    preco!: number;
 }
