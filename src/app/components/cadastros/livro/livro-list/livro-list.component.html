@@ -40,29 +40,29 @@
                 </ng-container>
             
                 <!-- Sigla Column -->
-                <ng-container matColumnDef="preco">
-                <th mat-header-cell *matHeaderCellDef> Preço </th>
-                <td mat-cell *matCellDef="let element"> {{element.preco}} </td>
+                <ng-container matColumnDef="valor">
+                <th mat-header-cell *matHeaderCellDef> valor </th>
+                <td mat-cell *matCellDef="let element"> {{element.valor}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="autor">
                     <th mat-header-cell *matHeaderCellDef> Autor </th>
-                    <td mat-cell *matCellDef="let element"> {{element.autor}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.autor.usuario.nome}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="ano_publicacao">
                     <th mat-header-cell *matHeaderCellDef> Ano de Publicação </th>
-                    <td mat-cell *matCellDef="let element"> {{element.ano_publicacao}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.anoPublicacao}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="editora">
                     <th mat-header-cell *matHeaderCellDef> Editora </th>
-                    <td mat-cell *matCellDef="let element"> {{element.editora}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.editora.nome}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="isbn">
                     <th mat-header-cell *matHeaderCellDef> ISBN </th>
-                    <td mat-cell *matCellDef="let element"> {{element.isbn}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.idLivro}} </td>
                 </ng-container>
             
                 <!-- Acao Column -->

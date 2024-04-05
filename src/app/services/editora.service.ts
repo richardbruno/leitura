@@ -11,17 +11,10 @@ export class EditoraService {
 
   constructor(private httpClient: HttpClient) {  }
 
-  findAll(page?: number, pageSize?: number): Observable<Editora[]> {
-    let params = {};
+  findAll(): Observable<Editora[]> {
+    
 
-    if (page !== undefined && pageSize !== undefined) {
-      params = {
-        page: page.toString(),
-        pageSize: pageSize.toString()
-      }
-    }
-
-    return this.httpClient.get<Editora[]>(`${this.baseUrl}/getAll/`, {params});
+    return this.httpClient.get<Editora[]>(`${this.baseUrl}/getAll`);
   }
 
   findById(id: string): Observable<Editora> {

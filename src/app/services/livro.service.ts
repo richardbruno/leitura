@@ -7,21 +7,13 @@ import { Livro } from '../models/livro.model';
   providedIn: 'root'
 })
 export class LivroService {
-  private baseUrl = 'http://localhost:8080/livro';
+  private baseUrl = 'http://localhost:8080/Livro';
 
   constructor(private httpClient: HttpClient) {  }
 
-  findAll(page?: number, pageSize?: number): Observable<Livro[]> {
-    let params = {};
+  findAll(): Observable<Livro[]> {
 
-    if (page !== undefined && pageSize !== undefined) {
-      params = {
-        page: page.toString(),
-        pageSize: pageSize.toString()
-      }
-    }
-
-    return this.httpClient.get<Livro[]>(`${this.baseUrl}/getAll/`, {params});
+    return this.httpClient.get<Livro[]>(`${this.baseUrl}/getAll`);
   }
 
   findById(id: string): Observable<Livro> {

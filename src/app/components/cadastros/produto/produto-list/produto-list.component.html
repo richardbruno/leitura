@@ -30,19 +30,19 @@
                 <!-- Position Column -->
                 <ng-container matColumnDef="id">
                 <th mat-header-cell *matHeaderCellDef> No. </th>
-                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.idluminaria}} </td>
                 </ng-container>
             
                 <!-- Nome Column -->
                 <ng-container matColumnDef="nomeProduto">
                 <th mat-header-cell *matHeaderCellDef> Nome </th>
-                <td mat-cell *matCellDef="let element"> {{element.nomeProduto}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.estilo}} </td>
                 </ng-container>
             
                 <!-- Sigla Column -->
                 <ng-container matColumnDef="preco">
-                <th mat-header-cell *matHeaderCellDef> Preço </th>
-                <td mat-cell *matCellDef="let element"> {{element.preco}} </td>
+                <th mat-header-cell *matHeaderCellDef> valor </th>
+                <td mat-cell *matCellDef="let element"> {{element.valor}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="descricao">
@@ -50,15 +50,6 @@
                     <td mat-cell *matCellDef="let element"> {{element.descricao}} </td>
                 </ng-container>
 
-                <ng-container matColumnDef="estoque">
-                    <th mat-header-cell *matHeaderCellDef> Qtd. Estoque </th>
-                    <td mat-cell *matCellDef="let element"> {{element.estoque}} </td>
-                </ng-container>
-
-                <ng-container matColumnDef="fornecedor">
-                    <th mat-header-cell *matHeaderCellDef> Fornecedor </th>
-                    <td mat-cell *matCellDef="let element"> {{element.forncedor}} </td>
-                </ng-container>
             
                 <!-- Acao Column -->
                 <ng-container matColumnDef="acao">

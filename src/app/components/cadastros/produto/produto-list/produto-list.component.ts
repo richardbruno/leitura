@@ -36,7 +36,7 @@ const THUMBUP_ICON =
   styleUrl: './produto-list.component.css'
 })
 export class ProdutoListComponent {
-  displayedColumns: string[] = ['id', 'nomeProduto', 'preco', 'descricao', 'estoque', 'fornecedor','acao'];
+  displayedColumns: string[] = ['id', 'nomeProduto', 'preco', 'descricao', 'acao'];
   produtos: Produto[] = [];
 
   totalRecords = 0;
@@ -47,17 +47,17 @@ export class ProdutoListComponent {
 
   }
 
-  // ngOnInit(): void {
-  //   this.produtoService.findAll(this.page, this.pageSize).subscribe(data => {
-  //     this.produtos = data;
-  //     console.log(this.produtos);
-  //   });
+   ngOnInit(): void {
+     this.produtoService.findAll().subscribe(data => {
+       this.produtos = data;
+       console.log(this.produtos);
+     });
 
-  //   this.produtoService.count().subscribe(data => {
-  //     this.totalRecords = data;
-  //     console.log(this.totalRecords);
-  //   });
-  // }
+     this.produtoService.count().subscribe(data => {
+       this.totalRecords = data;
+       console.log(this.totalRecords);
+     });
+  }
   // // Método para paginar os resultados
   // paginar(event: PageEvent): void {
   //   this.page = event.pageIndex;

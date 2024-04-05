@@ -16,8 +16,8 @@ export const routes: Routes = [
     { path: 'livro', component: LivroComponent, title: 'Livro'},
     { path: 'livro/list', component: LivroListComponent, title: 'Lista de Livros'},
 
-    { path: 'produto', component: ProdutoComponent, title: 'Produto'},
-    { path: 'produto/list', component: ProdutoListComponent, title: 'Lista de Produtos'},
+    { path: 'luminaria', component: ProdutoComponent, title: 'luminaria'},
+    { path: 'luminaria/list', component: ProdutoListComponent, title: 'Lista de luminaria'},
 
     { path: 'usuario', component: UsuarioComponent, title: 'Usuario'},
     { path: 'usuario/list', component: UsuarioListComponent, title: 'Lista de Usuários'},

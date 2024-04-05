@@ -11,17 +11,10 @@ export class ProdutoService {
 
   constructor(private httpClient: HttpClient) {  }
 
-  findAll(page?: number, pageSize?: number): Observable<Produto[]> {
-    let params = {};
+  findAll(): Observable<Produto[]> {
+    
 
-    if (page !== undefined && pageSize !== undefined) {
-      params = {
-        page: page.toString(),
-        pageSize: pageSize.toString()
-      }
-    }
-
-    return this.httpClient.get<Produto[]>(`${this.baseUrl}/getAll/`, {params});
+    return this.httpClient.get<Produto[]>(`${this.baseUrl}/getAll`);
   }
 
   findById(id: string): Observable<Produto> {
