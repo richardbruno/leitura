@@ -35,7 +35,7 @@ const THUMBUP_ICON =
   templateUrl: './usuario-list.component.html',
   styleUrl: './usuario-list.component.css'
 })
-export class UsuarioListComponent implements OnInit {
+export class UsuarioListComponent {
   displayedColumns: string[] = ['id', 'nomeUsuario', 'cpf', 'email', 'telefone', 'cep','acao'];
   usuarios: Usuario[] = [];
 
@@ -47,21 +47,21 @@ export class UsuarioListComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
-    this.usuarioService.findAll(this.page, this.pageSize).subscribe(data => {
-      this.usuarios = data;
-      console.log(this.usuarios);
-    });
+  // ngOnInit(): void {
+  //   this.usuarioService.findAll(this.page, this.pageSize).subscribe(data => {
+  //     this.usuarios = data;
+  //     console.log(this.usuarios);
+  //   });
 
-    this.usuarioService.count().subscribe(data => {
-      this.totalRecords = data;
-      console.log(this.totalRecords);
-    });
-  }
-  // Método para paginar os resultados
-  paginar(event: PageEvent): void {
-    this.page = event.pageIndex;
-    this.pageSize = event.pageSize;
-    this.ngOnInit();
-  }
+  //   this.usuarioService.count().subscribe(data => {
+  //     this.totalRecords = data;
+  //     console.log(this.totalRecords);
+  //   });
+  // }
+  // // Método para paginar os resultados
+  // paginar(event: PageEvent): void {
+  //   this.page = event.pageIndex;
+  //   this.pageSize = event.pageSize;
+  //   this.ngOnInit();
+  // }
 }

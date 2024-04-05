@@ -35,7 +35,7 @@ const THUMBUP_ICON =
   templateUrl: './produto-list.component.html',
   styleUrl: './produto-list.component.css'
 })
-export class ProdutoListComponent implements OnInit {
+export class ProdutoListComponent {
   displayedColumns: string[] = ['id', 'nomeProduto', 'preco', 'descricao', 'estoque', 'fornecedor','acao'];
   produtos: Produto[] = [];
 
@@ -47,21 +47,21 @@ export class ProdutoListComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
-    this.produtoService.findAll(this.page, this.pageSize).subscribe(data => {
-      this.produtos = data;
-      console.log(this.produtos);
-    });
+  // ngOnInit(): void {
+  //   this.produtoService.findAll(this.page, this.pageSize).subscribe(data => {
+  //     this.produtos = data;
+  //     console.log(this.produtos);
+  //   });
 
-    this.produtoService.count().subscribe(data => {
-      this.totalRecords = data;
-      console.log(this.totalRecords);
-    });
-  }
-  // Método para paginar os resultados
-  paginar(event: PageEvent): void {
-    this.page = event.pageIndex;
-    this.pageSize = event.pageSize;
-    this.ngOnInit();
-  }
+  //   this.produtoService.count().subscribe(data => {
+  //     this.totalRecords = data;
+  //     console.log(this.totalRecords);
+  //   });
+  // }
+  // // Método para paginar os resultados
+  // paginar(event: PageEvent): void {
+  //   this.page = event.pageIndex;
+  //   this.pageSize = event.pageSize;
+  //   this.ngOnInit();
+  // }
 }

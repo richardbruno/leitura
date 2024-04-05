@@ -35,33 +35,33 @@ const THUMBUP_ICON =
   templateUrl: './editora-list.component.html',
   styleUrl: './editora-list.component.css'
 })
-export class EditoraListComponent implements OnInit {
+export class EditoraListComponent {
   displayedColumns: string[] = ['id', 'nomeEditora', 'descricaoEditora', 'paisOrigem', 'dataFundacao', 'site','acao'];
   editoras: Editora[] = [];
 
   totalRecords = 0;
-  pageSize = 2;
-  page = 0;
+  // pageSize = 2;
+  // page = 0;
 
   constructor(private editoraService: EditoraService) {
 
   }
 
-  ngOnInit(): void {
-    this.editoraService.findAll(this.page, this.pageSize).subscribe(data => {
-      this.editoras = data;
-      console.log(this.editoras);
-    });
+//   ngOnInit(): void {
+//     this.editoraService.findAll(this.page, this.pageSize).subscribe(data => {
+//       this.editoras = data;
+//       console.log(this.editoras);
+//     });
 
-    this.editoraService.count().subscribe(data => {
-      this.totalRecords = data;
-      console.log(this.totalRecords);
-    });
-  }
-  // Método para paginar os resultados
-  paginar(event: PageEvent): void {
-    this.page = event.pageIndex;
-    this.pageSize = event.pageSize;
-    this.ngOnInit();
-  }
+//     this.editoraService.count().subscribe(data => {
+//       this.totalRecords = data;
+//       console.log(this.totalRecords);
+//     });
+//   }
+//   Método para paginar os resultados
+//   paginar(event: PageEvent): void {
+//     this.page = event.pageIndex;
+//     this.pageSize = event.pageSize;
+//     this.ngOnInit();
+//   }
 }
