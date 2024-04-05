@@ -9,6 +9,10 @@ import { UsuarioListComponent } from './components/cadastros/usuario/usuario-lis
 import { AutorComponent } from './components/cadastros/autor/autor.component';
 import { EditoraComponent } from './components/cadastros/editora/editora.component';
 import { EditoraListComponent } from './components/cadastros/editora/editora-list/editora-list.component';
+import { CorComponent } from './components/cadastros/cor/cor.component';
+import { CorListComponent } from './components/cadastros/cor/cor-list/cor-list.component';
+
+
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent, title: 'Login'},
@@ -25,4 +29,9 @@ export const routes: Routes = [
 
     { path: 'editora', component: EditoraComponent, title: 'Editora'},
     { path: 'editora/list', component: EditoraListComponent, title: 'Lista de Editoras'},
+
+    { path: 'cor', component: CorComponent, title: 'cor'},
+    { path: 'cor/list', component: CorListComponent, title: 'Lista de cor'},
+
+
 ];
