@@ -38,12 +38,14 @@
         <mat-card-actions>
             <button mat-raised-button 
                     style="background-color: #F8CADC;"  
-                    (click)="salvar()">
+                    (click)="salvar()"
+                    routerLink="/cor/list">
+                    
                     <!-- [disabled]="formGroup.invalid">  --> 
                 Salvar 
             </button>
             <button mat-raised-button  
-                    routerLink="/cores"> 
+                    routerLink="/cor/list"> 
                 Cancelar 
             </button>
         </mat-card-actions>

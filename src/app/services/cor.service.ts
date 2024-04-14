@@ -9,9 +9,14 @@ import { Cor } from '../models/cor.model';
 export class CorService {
   private baseUrl = 'http://localhost:8080/cor';
 
+  
+
   constructor(private httpClient: HttpClient) {  }
 
   findAll(): Observable<Cor[]> {
+    let params = {};
+
+    
     
 
     return this.httpClient.get<Cor[]>(`${this.baseUrl}/getAll`);
