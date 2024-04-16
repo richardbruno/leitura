@@ -14,11 +14,7 @@ export class CorService {
   constructor(private httpClient: HttpClient) {  }
 
   findAll(): Observable<Cor[]> {
-    let params = {};
-
     
-    
-
     return this.httpClient.get<Cor[]>(`${this.baseUrl}/getAll`);
   }
 
@@ -27,6 +23,7 @@ export class CorService {
   }
 
   insert(cor: Cor): Observable<Cor> {
+
     return this.httpClient.post<Cor>(`${this.baseUrl}/insert/`, cor);
   }
   

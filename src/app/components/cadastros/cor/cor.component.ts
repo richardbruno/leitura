@@ -9,7 +9,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { EmptyError, Observable } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ViewChild, ElementRef } from '@angular/core';
 
 import { Cor } from '../../../models/cor.model';
 import { CorService } from '../../../services/cor.service';
@@ -43,10 +42,8 @@ export class CorComponent {
       
     this.formGroup = formBuilder.group({
       id: [(cor && cor.id) ? cor.id : null],
-      descricao: [(cor && cor.descricao) ? cor.descricao: '',
-            Validators.compose([Validators.required])],
-      corRgb: [(cor && cor.corRgb) ? cor.corRgb: '',
-            Validators.compose([Validators.required])],
+      
+      descricao: [(cor && cor.descricao) ? cor.descricao: '', Validators.compose([Validators.required])],
     });
   }
 

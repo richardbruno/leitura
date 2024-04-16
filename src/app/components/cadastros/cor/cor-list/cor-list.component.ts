@@ -25,7 +25,7 @@ import { CorService } from '../../../../services/cor.service';
 })
 export class CorListComponent implements OnInit {
   
-  displayedColumns: string[] = ['id', 'cor', 'corRgb','acao'];
+  displayedColumns: string[] = ['id', 'cor', 'acao'];
   cor: Cor[] = [];
 
   constructor (
@@ -45,13 +45,13 @@ export class CorListComponent implements OnInit {
     this.corService.delete(id).subscribe(
       () => {
         this.snackBar.open('Cor excluída com sucesso', 'Fechar', {
-          duration: 2000,
+          duration: 4000,
         });
         this.atualizarLista();
       },
       error => {
         this.snackBar.open('Erro ao excluir cor', 'Fechar', {
-          duration: 2000,
+          duration: 4000,
         });
       }
     );
