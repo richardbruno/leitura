@@ -6,7 +6,7 @@ import { Produto } from '../models/produto.model';
 @Injectable({
   providedIn: 'root'
 })
-export class ProdutoService {
+export class LuminariaService {
   private baseUrl = 'http://localhost:8080/luminaria';
 
   constructor(private httpClient: HttpClient) {  }
@@ -29,8 +29,8 @@ export class ProdutoService {
     return this.httpClient.put<Produto>(`${this.baseUrl}/update/${produto.id}`, produto);
   }
 
-  delete(produto: Produto): Observable<any> {
-    return this.httpClient.delete<any>(`${this.baseUrl}DeleteForId/${produto.id}`);
+  delete(id: number): Observable<any> {
+    return this.httpClient.delete<any>(`${this.baseUrl}/DeleteForId/${id}`);
   }
 
   count(): Observable<number> {

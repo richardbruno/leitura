@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Produto } from '../../../../models/produto.model';
-import { ProdutoService } from '../../../../services/produto.service';
+import { LuminariaService } from '../../../../services/Luminaria.service';
 import { NgFor } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -16,6 +16,7 @@ import { MatCardModule } from '@angular/material/card';
 import {MatMenuModule} from '@angular/material/menu';
 import {ErrorStateMatcher} from '@angular/material/core';
 import { HttpErrorResponse } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 const THUMBUP_ICON =
   `
@@ -43,20 +44,53 @@ export class ProdutoListComponent {
   pageSize = 2;
   page = 0;
 
-  constructor(private produtoService: ProdutoService) {
+  constructor(
+    private luminariaService: LuminariaService,
+    private snackBar: MatSnackBar
+  
+  ) {
 
   }
 
    ngOnInit(): void {
-     this.produtoService.findAll().subscribe(data => {
+     this.luminariaService.findAll().subscribe(data => {
        this.produtos = data;
        console.log(this.produtos);
      });
 
-     this.produtoService.count().subscribe(data => {
+     this.luminariaService.count().subscribe(data => {
        this.totalRecords = data;
        console.log(this.totalRecords);
      });
+  }
+
+  delete(id: number){
+
+    this.luminariaService.delete(id).subscribe(
+      () => {
+        this.snackBar.open('Produto excluída com sucesso', 'Fechar', {
+          duration: 4000,
+        });
+        this.atualizarLista();
+      },
+      error => {
+        this.snackBar.open('Erro ao excluir Produto', 'Fechar', {
+          duration: 4000,
+        });
+      }
+    );
+
+  }
+
+  atualizarLista() {
+    this.luminariaService.findAll().subscribe(
+      produtos => {
+        this.produtos = produtos;
+      },
+      error => {
+        console.log('Erro ao buscar produto:', error);
+      }
+    );
   }
   // // Método para paginar os resultados
   // paginar(event: PageEvent): void {

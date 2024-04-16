@@ -2,7 +2,7 @@
     <div>
         <mat-toolbar color="primary" class="toolbar-title">
             <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="menu" class="menu"></mat-icon>
-            
+
             <button mat-button [matMenuTriggerFor]="menu">Categorias</button>
             <mat-menu #menu="matMenu">
                 <button mat-menu-item>Aventura e Ação</button>
@@ -20,52 +20,59 @@
             <mat-icon class="iconPerfil">person</mat-icon>
             <mat-icon class="iconCesta">shopping_basket</mat-icon>
         </mat-toolbar>
-    
+
     </div>
 
     <div class="divForm">
-            <mat-card class="cardTitulo">Lista de Produtos Cadastrados</mat-card>
-            <table mat-table [dataSource]="produtos" class="mat-elevation-z8">
-                
-                <!-- Position Column -->
-                <ng-container matColumnDef="id">
+        <mat-card class="cardTitulo">Lista de Luminaria Cadastrados</mat-card>
+
+        <button mat-fab style="background-color: #009DAC; margin-left: 82.5%;" routerLink="/luminaria">
+            <mat-icon>add</mat-icon>
+        </button>
+
+        <table mat-table [dataSource]="produtos" class="mat-elevation-z8">
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="id">
                 <th mat-header-cell *matHeaderCellDef> No. </th>
                 <td mat-cell *matCellDef="let element"> {{element.idluminaria}} </td>
-                </ng-container>
-            
-                <!-- Nome Column -->
-                <ng-container matColumnDef="nomeProduto">
+            </ng-container>
+
+            <!-- Nome Column -->
+            <ng-container matColumnDef="nomeProduto">
                 <th mat-header-cell *matHeaderCellDef> Nome </th>
                 <td mat-cell *matCellDef="let element"> {{element.estilo}} </td>
-                </ng-container>
-            
-                <!-- Sigla Column -->
-                <ng-container matColumnDef="preco">
+            </ng-container>
+
+            <!-- Sigla Column -->
+            <ng-container matColumnDef="preco">
                 <th mat-header-cell *matHeaderCellDef> valor </th>
                 <td mat-cell *matCellDef="let element"> {{element.valor}} </td>
-                </ng-container>
+            </ng-container>
 
-                <ng-container matColumnDef="descricao">
-                    <th mat-header-cell *matHeaderCellDef> Descrição </th>
-                    <td mat-cell *matCellDef="let element"> {{element.descricao}} </td>
-                </ng-container>
+            <ng-container matColumnDef="descricao">
+                <th mat-header-cell *matHeaderCellDef> Descrição </th>
+                <td mat-cell *matCellDef="let element"> {{element.descricao}} </td>
+            </ng-container>
 
-            
-                <!-- Acao Column -->
-                <ng-container matColumnDef="acao">
+
+            <!-- Acao Column -->
+            <ng-container matColumnDef="acao">
                 <th mat-header-cell *matHeaderCellDef> Ação </th>
-                <td mat-cell *matCellDef="let element"> 
-                
-                    <button mat-icon-button 
-                            color="warn">
-                            <mat-icon>delete</mat-icon>
-                    </button>        
+                <td mat-cell *matCellDef="let element">
+
+                    <button mat-icon-button color="warn" (click)="delete(element.idluminaria)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                    <button mat-icon-button color="primary" routerLink="">
+                        <mat-icon>add</mat-icon>
+                    </button>
                 </td>
-                </ng-container>
-            
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            </table>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
     </div>
 
 </div>

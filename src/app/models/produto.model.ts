@@ -1,8 +1,9 @@
 export class Produto {
     id!: number;
-    nomeProduto!: string;
+    estilo!: string;
+    tipoDeFonteDeLuz!: string;
+    cor!: number;
+    marca!: number;
     descricao!: string;
-    estoque!: number;
-    fornecedor!: string;
-    preco!: number;
+    valor!: number;
 }
