@@ -1,6 +1,6 @@
 import { ActivatedRouteSnapshot, ResolveFn, RouterStateSnapshot } from "@angular/router";
-import { Livro } from "../../../models/livro.model";
-import { LivroService } from "../../../services/livro.service";
+import { Livro } from "../../../../models/livro.model";
+import { LivroService } from "../../../../services/livro.service";
 import { inject } from "@angular/core";
 
 export const livroResolver: ResolveFn<Livro> =

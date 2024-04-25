@@ -47,21 +47,21 @@ export class LivroListComponent{
 
   }
 
-  // ngOnInit(): void {
-  //   this.livroService.findAll(this.page, this.pageSize).subscribe(data => {
-  //     this.livros = data;
-  //     console.log(this.livros);
-  //   });
+   ngOnInit(): void {
+     this.livroService.findAll(this.page, this.pageSize).subscribe(data => {
+       this.livros = data;
+       console.log(this.livros);
+     });
 
-  //   this.livroService.count().subscribe(data => {
-  //     this.totalRecords = data;
-  //     console.log(this.totalRecords);
-  //   });
-  // }
+     this.livroService.count().subscribe(data => {
+       this.totalRecords = data;
+       console.log(this.totalRecords);
+     });
+   }
   // // Método para paginar os resultados
-  // paginar(event: PageEvent): void {
-  //   this.page = event.pageIndex;
-  //   this.pageSize = event.pageSize;
-  //   this.ngOnInit();
-  // }
+   paginar(event: PageEvent): void {
+     this.page = event.pageIndex;
+     this.pageSize = event.pageSize;
+     this.ngOnInit();
+   }
 }

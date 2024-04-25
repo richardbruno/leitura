@@ -20,7 +20,6 @@
             <mat-icon class="iconPerfil">person</mat-icon>
             <mat-icon class="iconCesta">shopping_basket</mat-icon>
         </mat-toolbar>
-    
     </div>
 
     <div class="divForm">
@@ -75,6 +74,14 @@
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
+
+            <mat-paginator 
+                [pageSizeOptions]="[2, 4, 8, 16]" 
+                [pageSize]="pageSize" 
+                [length]="totalRecords"
+                (page)="paginar($event)">
+            </mat-paginator>
+            
     </div>
 
 </div>
