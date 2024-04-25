@@ -16,8 +16,6 @@ import { editoraResolver } from './components/cadastros/editora/resolver/editora
 import { CorComponent } from './components/cadastros/cor/cor.component';
 import { CorListComponent } from './components/cadastros/cor/cor-list/cor-list.component';
 
-
-
 export const routes: Routes = [
     { path: 'login', component: LoginComponent, title: 'Login'},
     

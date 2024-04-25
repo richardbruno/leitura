@@ -49,11 +49,7 @@ export class EditoraListComponent {
   }
 
    ngOnInit(): void {
-<<<<<<< HEAD
-     this.editoraService.findAll(this.page, this.pageSize).subscribe(data => {
-=======
      this.editoraService.findAll().subscribe(data => {
->>>>>>> b422d2d33a3fc15dc523fa36e56375471d718775
        this.editoras = data;
        console.log(this.editoras);
      });
