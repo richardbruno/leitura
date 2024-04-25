@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
-import { FormBuilder,FormControl,FormsModule, FormGroup,FormGroupDirective,NgForm, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormsModule, FormGroup, FormGroupDirective, NgForm, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { ProdutoService } from '../../../services/produto.service';
+import { LuminariaService } from '../../../services/Luminaria.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { NgIf } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Produto } from '../../../models/produto.model';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatIconRegistry, MatIconModule} from '@angular/material/icon';
-import {DomSanitizer} from '@angular/platform-browser';
-import {ErrorStateMatcher} from '@angular/material/core';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconRegistry, MatIconModule } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
+import { ErrorStateMatcher } from '@angular/material/core';
 import { HttpErrorResponse } from '@angular/common/http';
 
 const THUMBUP_ICON =
@@ -41,56 +41,76 @@ export class InputErrorStateMatcherExample {
   selector: 'produto',
   standalone: true,
   imports: [NgIf, FormsModule, ReactiveFormsModule, MatFormFieldModule,
-           MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, RouterModule,
-           MatMenuModule, MatIconModule],
+    MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, RouterModule,
+    MatMenuModule, MatIconModule],
   templateUrl: './produto.component.html',
   styleUrl: './produto.component.css'
 })
 export class ProdutoComponent {
-    
+
   formGroup: FormGroup;
-  
+
   constructor(private formBuilder: FormBuilder,
-    private produtoService: ProdutoService,
+    private luminariaService: LuminariaService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private sanitizer: DomSanitizer,
     private iconRegistry: MatIconRegistry,) {
 
-      iconRegistry.addSvgIconLiteral('thumbs-up', sanitizer.bypassSecurityTrustHtml(THUMBUP_ICON));
+    iconRegistry.addSvgIconLiteral('thumbs-up', sanitizer.bypassSecurityTrustHtml(THUMBUP_ICON));
 
-      const produto: Produto = activatedRoute.snapshot.data['produto'];
-      this.formGroup = formBuilder.group({
+    const produto: Produto = activatedRoute.snapshot.data['produto'];
+    this.formGroup = formBuilder.group({
 
-        id: [(produto && produto.id) ? produto.id : null],
-        nomeProduto: [(produto && produto.nomeProduto) ? produto.nomeProduto : '', 
-              Validators.compose([Validators.required])],
+      id: [(produto && produto.id) ? produto.id : null],
+      estilo: [(produto && produto.estilo) ? produto.estilo : '',
+      Validators.compose([Validators.required])],
 
-        preco: [(produto && produto.preco) ? produto.preco : '', 
-              Validators.compose([Validators.required])],
+      tipoDeFonteDeLuz: [(produto && produto.tipoDeFonteDeLuz) ? produto.tipoDeFonteDeLuz : '',
+      Validators.compose([Validators.required])],
 
-        descricao: [(produto && produto.descricao) ? produto.descricao : '', 
-              Validators.compose([Validators.required])],
+      cor: [(produto && produto.cor) ? produto.cor : '',
+      Validators.compose([Validators.required])],
 
-        estoque: [(produto && produto.estoque) ? produto.estoque : '', 
-              Validators.compose([Validators.required])],
+      marca: [(produto && produto.marca) ? produto.marca : '',
+      Validators.compose([Validators.required])],
 
-        fornecedor: [(produto && produto.fornecedor) ? produto.fornecedor : '', 
-              Validators.compose([Validators.required])],
+      descricao: [(produto && produto.descricao) ? produto.descricao : '',
+      Validators.compose([Validators.required])],
 
-      });
-   
+      valor: [(produto && produto.valor) ? produto.valor : '',
+      Validators.compose([Validators.required])],
+
+    });
+
   }
+/*
+  initializeForm() {
+
+    codigo de editar
+
+    const luminaria: Produto = this.activatedRoute.snapshot.data['luminaria'];
+
+    // selecionando o estado
+    const estado = this.estados
+      .find(estado => estado.id === (municipio?.estado?.id || null)); 
+
+    this.formGroup = this.formBuilder.group({
+      id: [(municipio && municipio.id) ? municipio.id : null],
+      nomeProduro: [(municipio && municipio.nome) ? municipio.nome : '', Validators.required],
+      estado: [estado]
+    });
+  }*/
 
   cadastrar() {
-    
+
     this.formGroup.markAllAsTouched();
     if (this.formGroup.valid) {
       const produto = this.formGroup.value;
 
       const operacao = produto.id == null
-      ? this.produtoService.insert(produto)
-      : this.produtoService.update(produto);
+        ? this.luminariaService.insert(produto)
+        : this.luminariaService.update(produto);
 
       operacao.subscribe({
         next: () => this.router.navigateByUrl('/produto'),
@@ -106,7 +126,7 @@ export class ProdutoComponent {
     if (this.formGroup.valid) {
       const produto = this.formGroup.value;
       if (produto.id != null) {
-        this.produtoService.delete(produto).subscribe({
+        this.luminariaService.delete(produto).subscribe({
           next: () => {
             this.router.navigateByUrl('/produto');
           },
@@ -133,13 +153,13 @@ export class ProdutoComponent {
         });
       };
     } else if (error.status < 400) {
-        alert(error.error?.message || 'Erro ao cadastrar produto.');
+      alert(error.error?.message || 'Erro ao cadastrar produto.');
     } else if (error.status >= 500) {
-        alert('Erro interno do servidor.');
+      alert('Erro interno do servidor.');
     }
   }
 
-  errorMessages: {[controlName: string]: {[errorName: string] : string}} = {
+  errorMessages: { [controlName: string]: { [errorName: string]: string } } = {
     nomeProduto: {
       required: 'Insira um nome para o produto.',
     },
@@ -148,14 +168,14 @@ export class ProdutoComponent {
     },
     descricao: {
       required: 'Insira a descrição do produto.',
-      apiError: ' ' 
+      apiError: ' '
     },
     estoque: {
       required: 'Insira a quantidade em estoque.',
     },
     fornecedor: {
       required: 'Insira o nome do fornecedor.',
-      apiError: ' ' 
+      apiError: ' '
     }
   }
 
@@ -165,11 +185,11 @@ export class ProdutoComponent {
     }
     // retorna a mensagem de erro
     for (const errorName in errors) {
-      if (errors.hasOwnProperty(errorName) && 
-          this.errorMessages[controlName][errorName]) {
-            return this.errorMessages[controlName][errorName];
+      if (errors.hasOwnProperty(errorName) &&
+        this.errorMessages[controlName][errorName]) {
+        return this.errorMessages[controlName][errorName];
       }
-    } 
+    }
 
     return 'Erro não mapeado';
   }

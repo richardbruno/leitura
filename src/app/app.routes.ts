@@ -13,6 +13,10 @@ import { livroResolver } from './components/cadastros/livro/resolver/livro.resol
 import { produtoResolver } from './components/cadastros/produto/resolver/produto.resolver';
 import { usuarioResolver } from './components/cadastros/usuario/resolver/usuario.resolver';
 import { editoraResolver } from './components/cadastros/editora/resolver/editora.resolver';
+import { CorComponent } from './components/cadastros/cor/cor.component';
+import { CorListComponent } from './components/cadastros/cor/cor-list/cor-list.component';
+
+
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent, title: 'Login'},
@@ -24,6 +28,8 @@ export const routes: Routes = [
     { path: 'produto', component: ProdutoComponent, title: 'Produto'},
     { path: 'produto/list', component: ProdutoListComponent, title: 'Lista de Produtos'},
     { path: 'produto/edit/:id', component: ProdutoComponent, resolve: {produto: produtoResolver}},
+    { path: 'luminaria', component: ProdutoComponent, title: 'luminaria'},
+    { path: 'luminaria/list', component: ProdutoListComponent, title: 'Lista de luminaria'},
 
     { path: 'usuario', component: UsuarioComponent, title: 'Usuario'},
     { path: 'autor', component: AutorComponent, title: 'Autor'},
@@ -33,4 +39,9 @@ export const routes: Routes = [
     { path: 'editora', component: EditoraComponent, title: 'Editora'},
     { path: 'editora/list', component: EditoraListComponent, title: 'Lista de Editoras'},
     { path: 'editora/edit/:id', component: EditoraComponent, resolve: {editora: editoraResolver}},
+
+    { path: 'cor', component: CorComponent, title: 'cor'},
+    { path: 'cor/list', component: CorListComponent, title: 'Lista de cor'},
+
+
 ];

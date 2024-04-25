@@ -6,22 +6,15 @@ import { Produto } from '../models/produto.model';
 @Injectable({
   providedIn: 'root'
 })
-export class ProdutoService {
+export class LuminariaService {
   private baseUrl = 'http://localhost:8080/luminaria';
 
   constructor(private httpClient: HttpClient) {  }
 
-  findAll(page?: number, pageSize?: number): Observable<Produto[]> {
-    let params = {};
+  findAll(): Observable<Produto[]> {
+    
 
-    if (page !== undefined && pageSize !== undefined) {
-      params = {
-        page: page.toString(),
-        pageSize: pageSize.toString()
-      }
-    }
-
-    return this.httpClient.get<Produto[]>(`${this.baseUrl}/getAll/`, {params});
+    return this.httpClient.get<Produto[]>(`${this.baseUrl}/getAll`);
   }
 
   findById(id: string): Observable<Produto> {
@@ -36,8 +29,8 @@ export class ProdutoService {
     return this.httpClient.put<Produto>(`${this.baseUrl}/update/${produto.id}`, produto);
   }
 
-  delete(produto: Produto): Observable<any> {
-    return this.httpClient.delete<any>(`${this.baseUrl}DeleteForId/${produto.id}`);
+  delete(id: number): Observable<any> {
+    return this.httpClient.delete<any>(`${this.baseUrl}/DeleteForId/${id}`);
   }
 
   count(): Observable<number> {

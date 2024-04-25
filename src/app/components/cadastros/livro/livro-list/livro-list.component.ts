@@ -36,7 +36,7 @@ const THUMBUP_ICON =
   styleUrl: './livro-list.component.css'
 })
 export class LivroListComponent{
-  displayedColumns: string[] = ['id', 'titulo', 'preco', 'autor', 'ano_publicacao', 'editora', 'isbn', 'acao'];
+  displayedColumns: string[] = ['id', 'titulo', 'valor', 'autor', 'ano_publicacao', 'editora', 'isbn', 'acao'];
   livros: Livro[] = [];
 
   totalRecords = 0;
@@ -48,7 +48,7 @@ export class LivroListComponent{
   }
 
    ngOnInit(): void {
-     this.livroService.findAll(this.page, this.pageSize).subscribe(data => {
+     this.livroService.findAll().subscribe(data => {
        this.livros = data;
        console.log(this.livros);
      });

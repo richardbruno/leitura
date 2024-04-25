@@ -48,10 +48,10 @@ export class UsuarioListComponent {
   }
 
    ngOnInit(): void {
-     this.usuarioService.findAll(this.page, this.pageSize).subscribe(data => {
-       this.usuarios = data;
-       console.log(this.usuarios);
-     });
+    // this.usuarioService.findAll().subscribe(data => {
+    //    this.usuarios = data;
+    //   console.log(this.usuarios);
+    // });
 
      this.usuarioService.count().subscribe(data => {
        this.totalRecords = data;

@@ -36,7 +36,8 @@ const THUMBUP_ICON =
   styleUrl: './editora-list.component.css'
 })
 export class EditoraListComponent {
-  displayedColumns: string[] = ['id', 'nomeEditora', 'descricaoEditora', 'paisOrigem', 'dataFundacao', 'site','acao'];
+  displayedColumns: string[] = ['id', 'nomeEditora', 'descricaoEditora', 'paisOrigem', 'acao'];
+//  displayedColumns: string[] = ['idEditora', 'nome', 'Telefone', 'paisOrigem', 'acao'];
   editoras: Editora[] = [];
 
   totalRecords = 0;
@@ -48,7 +49,11 @@ export class EditoraListComponent {
   }
 
    ngOnInit(): void {
+<<<<<<< HEAD
      this.editoraService.findAll(this.page, this.pageSize).subscribe(data => {
+=======
+     this.editoraService.findAll().subscribe(data => {
+>>>>>>> b422d2d33a3fc15dc523fa36e56375471d718775
        this.editoras = data;
        console.log(this.editoras);
      });
