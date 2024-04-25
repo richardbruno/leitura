@@ -93,9 +93,9 @@ export class ProdutoListComponent {
     );
   }
   // // Método para paginar os resultados
-   paginar(event: PageEvent): void {
-     this.page = event.pageIndex;
-     this.pageSize = event.pageSize;
-     this.ngOnInit();
+   paginar(event: PageEvent): void  {
+     this.page = event.pageIndex ;
+     this.pageSize = event.pageSize ;
+     this.ngOnInit() ;
    }
 }
