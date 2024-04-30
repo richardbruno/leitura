@@ -29,6 +29,7 @@
         <button mat-fab style="background-color: #009DAC; margin-left: 82.5%;" routerLink="/luminaria">
             <mat-icon>add</mat-icon>
         </button>
+    <table>
 
         <table mat-table [dataSource]="produtos" class="mat-elevation-z8">
 
@@ -79,7 +80,7 @@
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
-
+        <ng-container>
             <mat-paginator 
                 [pageSizeOptions]="[2, 4, 8, 16] " 
                 [pageSize]="pageSize " 
