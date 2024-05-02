@@ -11,10 +11,18 @@ export class LuminariaService {
 
   constructor(private httpClient: HttpClient) {  }
 
-  findAll(): Observable<Produto[]> {
-    
+  findAll(page?: number, pageSize?: number): Observable<Produto[]> {
 
-    return this.httpClient.get<Produto[]>(`${this.baseUrl}/getAll`);
+    let params = {};
+
+    if (page !== undefined && pageSize !== undefined) {
+      params = {
+        page: page.toString(),
+        pageSize: pageSize.toString()
+      }
+    }
+    
+    return this.httpClient.get<Produto[]>(`${this.baseUrl}/getAll/`, {params});
   }
 
   findById(id: string): Observable<Produto> {

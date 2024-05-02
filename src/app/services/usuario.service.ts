@@ -11,9 +11,18 @@ export class UsuarioService {
 
   constructor(private httpClient: HttpClient) {  }
 
-  findAll(): Observable<Usuario[]> {
+  findAll(page?: number, pageSize?: number): Observable<Usuario[]> {
 
-    return this.httpClient.get<Usuario[]>(`${this.baseUrl}/getAll`);
+    let params = {};
+
+    if (page !== undefined && pageSize !== undefined) {
+      params = {
+        page: page.toString(),
+        pageSize: pageSize.toString()
+      }
+    }
+
+    return this.httpClient.get<Usuario[]>(`${this.baseUrl}/getAll/`,{params} );
   }
 
   findById(id: string): Observable<Usuario> {

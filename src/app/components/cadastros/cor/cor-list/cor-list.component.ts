@@ -7,8 +7,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+import {MatPaginatorModule} from '@angular/material/paginator';
+
 import { Cor } from '../../../../models/cor.model'; 
 import { CorService } from '../../../../services/cor.service';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-cor-list',
@@ -18,12 +21,17 @@ import { CorService } from '../../../../services/cor.service';
     MatTableModule, 
     MatToolbarModule, 
     MatIconModule, 
-    MatButtonModule, 
+    MatButtonModule,
+    MatPaginatorModule, 
     RouterModule],
   templateUrl: './cor-list.component.html',
   styleUrl: './cor-list.component.css'
 })
 export class CorListComponent implements OnInit {
+
+  totalRecords = 0;
+  pageSize = 2;
+  page = 0;
   
   displayedColumns: string[] = ['id', 'cor', 'acao'];
   cor: Cor[] = [];
@@ -34,11 +42,24 @@ export class CorListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.corService.findAll().subscribe(data => {
+    this.corService.findAll(this.page , this.pageSize).subscribe(data => {
       this.cor = data;
       console.log(this.cor);
-    })
+    });
+
+    this.corService.count().subscribe(
+      data => {
+        this.totalRecords = data;
+        console.log(this.cor);
+      }
+    )
     this.atualizarLista();
+  }
+
+  paginar(event: PageEvent): void{
+    this.page = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.ngOnInit();
   }
 
   excluir(id: number) {

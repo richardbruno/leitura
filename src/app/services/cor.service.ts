@@ -9,13 +9,21 @@ import { Cor } from '../models/cor.model';
 export class CorService {
   private baseUrl = 'http://localhost:8080/cor';
 
-  
 
   constructor(private httpClient: HttpClient) {  }
 
-  findAll(): Observable<Cor[]> {
+  findAll(page?: number, pageSize?: number): Observable<Cor[]> {
+
+    let params = {};
+
+    if (page !== undefined && pageSize !== undefined) {
+      params = {
+        page: page.toString(),
+        pageSize: pageSize.toString()
+      }
+    }
     
-    return this.httpClient.get<Cor[]>(`${this.baseUrl}/getAll`);
+    return this.httpClient.get<Cor[]>(`${this.baseUrl}/getAll/`,{params});
   }
 
   findById(id: string): Observable<Cor> {
