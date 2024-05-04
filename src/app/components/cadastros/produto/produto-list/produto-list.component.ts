@@ -53,15 +53,17 @@ export class ProdutoListComponent {
   }
 
    ngOnInit(): void {
-     this.luminariaService.findAll().subscribe(data => {
-       this.produtos = data;
-       console.log(this.produtos);
-     });
+    this.luminariaService.findAll(this.page , this.pageSize).subscribe(data => {
+      this.produtos = data;
+      console.log(this.produtos);
+    });
 
-     this.luminariaService.count().subscribe(data => {
-       this.totalRecords = data;
-       console.log(this.totalRecords);
-     });
+    this.luminariaService.count().subscribe(
+      data => {
+        this.totalRecords = data;
+        console.log(this.produtos);
+      }
+    )
   }
 
   delete(id: number){
@@ -93,9 +95,9 @@ export class ProdutoListComponent {
     );
   }
   // // Método para paginar os resultados
-   paginar(event: PageEvent): void  {
-     this.page = event.pageIndex ;
-     this.pageSize = event.pageSize ;
-     this.ngOnInit() ;
-   }
+  paginar(event: PageEvent): void{
+    this.page = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.ngOnInit();
+  }
 }
