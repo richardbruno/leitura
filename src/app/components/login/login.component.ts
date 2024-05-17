@@ -1,42 +1,71 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
+import { Component, OnInit } from '@angular/core';
+ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { LoginService } from '../../services/login.service';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { NgIf } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { Login } from '../../models/login.model';
+import { AuthService } from '../../services/auth.service';
+import { NgIf } from '@angular/common';
 
 @Component({
-  selector: 'login',
+  selector: 'app-login',
   standalone: true,
   imports: [NgIf, ReactiveFormsModule, MatFormFieldModule,
-    MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, RouterModule],
+    MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule,
+    RouterModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
+  loginForm!: FormGroup;
 
-  formGroup: FormGroup;
-
-  constructor(private formBuilder: FormBuilder,
-    private loginService: LoginService,
+  constructor(
+     private formBuilder: FormBuilder,
+     private authService: AuthService,
     private router: Router,
-    private activatedRoute: ActivatedRoute) {
+    private snackBar: MatSnackBar
+  ) { }
 
-    const login: Login = activatedRoute.snapshot.data['login'];
+  ngOnInit(): void {
+    this.loginForm = this.formBuilder.group({
+      login: ['', [Validators.required]],
+      senha: ['', [Validators.required]]
+    });
+  }
 
-    this.formGroup = formBuilder.group({
-      id: [(login && login.id) ? login.id : null],
-      email: [(login && login.email) ? login.email : '', 
-            Validators.compose ([Validators.required, 
-                                 Validators.minLength(4)])],
-      senha: [(login && login.senha) ? login.senha : '',
-            Validators.compose([Validators.required, 
-                                Validators.minLength(2), 
-                                Validators.maxLength(2)])]});
+  onSubmit() {
+    if (this.loginForm.valid) {
+      const login = this.loginForm.get('login')!.value;
+      const senha = this.loginForm.get('senha')!.value;
+      this.authService.login(login, senha).subscribe({
+        next: (resp) => {
+          // redirecionar para a página principal
+          this.router.navigateByUrl('/cor/list');
+        },
+        error: (err) => {
+          console.log(err);
+          this.showSnackbarTopPosition("Usuário ou senha Inválidos", 'Fechar', 2000);
+        }
+      });
+    }
+    else {
+      console.log(this.loginForm);
+      this.showSnackbarTopPosition("Dados inválidos", 'Fechar', 2000);
+    }
+  }
+
+  onRegister() {
+    // criar usuário
+  }
+
+  showSnackbarTopPosition(content: any, action: any, duration: any) {
+    this.snackBar.open(content, action, {
+      duration: 2000,
+      verticalPosition: "top", // Allowed values are  'top' | 'bottom'
+      horizontalPosition: "center" // Allowed values are 'start' | 'center' | 'end' | 'left' | 'right'
+    });
   }
 }
