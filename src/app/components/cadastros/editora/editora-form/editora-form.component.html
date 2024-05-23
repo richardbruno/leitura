@@ -1,0 +1,105 @@
+<mat-toolbar>
+    <span class="toolbar-title">Cadastro de Editoras</span>
+</mat-toolbar>
+<div class="form-container">
+    <mat-card>
+        <mat-card-content>
+            <form [formGroup]="formGroup">
+                <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label>Nome da Editora</mat-label>
+                    <input matInput type="text" formControlName="nomeEditora">
+                    <mat-error *ngIf="formGroup.get('nomeEditora')?.errors && 
+                                      formGroup.get('nomeEditora')?.touched">
+                        @if (formGroup.get('nomeEditora')?.errors?.['required']) {
+                            <span>Insira o nome da editora.</span>
+                        } 
+                        @if (formGroup.get('nomeEditora')?.errors?.['minlength']) {
+                            <span>O nome deve possuir ao menos 4 caracteres.</span>
+                        }
+                        @if (formGroup.get('nomeEditora')?.hasError('apiError')) {
+                            <span>{{ formGroup.get('nomeEditora')?.getError('apiError') }}</span>
+                        }
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label>Descrição </mat-label>
+                    <input matInput type="text" formControlName="descricaoEditora">
+                    <mat-error *ngIf="formGroup.get('descricaoEditora')?.errors && 
+                                      formGroup.get('descricaoEditora')?.touched">
+                        {{getErrorMessage('descricaoEditora', formGroup.get('descricaoEditora')?.errors)}}
+
+                        @if (formGroup.get('descricaoEditora')?.hasError('apiError')) {
+                            <span>{{ formGroup.get('descricaoEditora')?.getError('apiError') }}</span>
+                        }
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label>País de Origem</mat-label>
+                    <input matInput type="text" formControlName="paisOrigem">
+                    <mat-error *ngIf="formGroup.get('paisOrigem')?.errors && 
+                                      formGroup.get('paisOrigem')?.touched">
+                        @if (formGroup.get('paisOrigem')?.errors?.['required']) {
+                            <span>Insira o país de origem.</span>
+                        } 
+                        @if (formGroup.get('paisOrigem')?.errors?.['minlength']) {
+                            <span>A palavra deve possuir ao menos 4 caracteres.</span>
+                        }
+                        @if (formGroup.get('paisOrigem')?.hasError('apiError')) {
+                            <span>{{ formGroup.get('paisOrigem')?.getError('apiError') }}</span>
+                        }
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label>Site</mat-label>
+                    <input matInput type="text" formControlName="site">
+                    <mat-error *ngIf="formGroup.get('site')?.errors && 
+                                      formGroup.get('site')?.touched">
+                        @if (formGroup.get('site')?.errors?.['required']) {
+                            <span>Insira o site da editora.</span>
+                        } 
+                        @if (formGroup.get('site')?.errors?.['minlength']) {
+                            <span>A palavra deve possuir ao menos 4 caracteres.</span>
+                        }
+                        @if (formGroup.get('site')?.hasError('apiError')) {
+                            <span>{{ formGroup.get('site')?.getError('apiError') }}</span>
+                        }
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label>Fundação</mat-label>
+                    <input matInput type="text" formControlName="dataFundacao">
+                    <mat-error *ngIf="formGroup.get('dataFundacao')?.errors && 
+                                      formGroup.get('dataFundacao')?.touched">
+                        @if (formGroup.get('dataFundacao')?.errors?.['required']) {
+                            <span>Insira a data de fundacao da editora.</span>
+                        } 
+                        @if (formGroup.get('dataFundacao')?.hasError('apiError')) {
+                            <span>{{ formGroup.get('dataFundacao')?.getError('apiError') }}</span>
+                        }
+                    </mat-error>
+                </mat-form-field>
+            </form>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button 
+                    color="primary" 
+                    (click)="salvar()">
+                    <!-- [disabled]="formGroup.invalid">  -->
+                Salvar 
+            </button>
+            <button mat-raised-button 
+                    *ngIf="formGroup?.get('id')?.value"
+                    color="warn" 
+                    (click)="excluir()"
+                    [disabled]="formGroup.invalid"> 
+                Excluir 
+            </button>
+            <button mat-raised-button  
+                (click)="voltarPagina()">
+                Cancelar 
+            </button>
+
+        </mat-card-actions>
+    </mat-card>
+</div>
+

@@ -11,6 +11,7 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   constructor(private http: HttpClient) {}
+  title = 'leitura';
 
   ngOnInit() {
     this.http.get('https://jsonplaceholder.typicode.com/todos/1').subscribe(data => {

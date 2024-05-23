@@ -1,0 +1,12 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.demo-section + .demo-section {
+    margin-top: 16px;
+  }
+
+mat-toolbar{
+    background-color: #009DAC;
+    color: white;
+}

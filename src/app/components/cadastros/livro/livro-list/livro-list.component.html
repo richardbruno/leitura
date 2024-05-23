@@ -1,30 +1,10 @@
 <div class="background">
-    <div>
-        <mat-toolbar color="primary" class="toolbar-title">
-            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="menu" class="menu"></mat-icon>
-            
-            <button mat-button [matMenuTriggerFor]="menu">Categorias</button>
-            <mat-menu #menu="matMenu">
-                <button mat-menu-item>Aventura e Ação</button>
-                <button mat-menu-item>Biografias e Memórias</button>
-                <button mat-menu-item>Ficção Científica</button>
-                <button mat-menu-item>Literatura Clássica</button>
-                <button mat-menu-item>Mistério e Suspense</button>
-            </mat-menu>
-
-            <mat-form-field class="barraPesquisa">
-                <input matInput placeholder="Pesquisar...">
-                <mat-icon matSuffix class="iconPesquisar">search</mat-icon>
-            </mat-form-field>
-
-            <mat-icon class="iconPerfil">person</mat-icon>
-            <mat-icon class="iconCesta">shopping_basket</mat-icon>
-        </mat-toolbar>
-    
-    </div>
 
     <div class="divForm">
             <mat-card class="cardTitulo">Lista de Livros Cadastrados</mat-card>
+            <button class="botaoAdd" mat-fab color="accent" routerLink="/admin/livros/new">
+                <mat-icon>add</mat-icon>
+            </button>
             <table mat-table [dataSource]="livros" class="mat-elevation-z8">
                 
                 <!-- Position Column -->
@@ -96,8 +76,4 @@
             
     </div>
 
-</div>
-
-<div class="rodape">
-    <div class="tituloRodape">©Universidade Estadual do Tocantins</div>
 </div>

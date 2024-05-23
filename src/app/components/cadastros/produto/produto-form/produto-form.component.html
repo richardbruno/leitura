@@ -1,0 +1,111 @@
+
+<div class="form-container">
+
+    <mat-toolbar>
+        <span class="toolbar-title">Cadastro de Produtos</span>
+    </mat-toolbar>
+    <mat-card>
+        <mat-card-content>
+            <form [formGroup]="formGroup">
+                <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label>Estilo</mat-label>
+                    <input matInput type="text" formControlName="estilo">
+                    <mat-error *ngIf="formGroup.get('estilo')?.errors && 
+                                      formGroup.get('estilo')?.touched">
+                        @if (formGroup.get('estilo')?.errors?.['required']) {
+                            <span>O estilo deve ser informado.</span>
+                        } 
+                        @if (formGroup.get('estilo')?.hasError('apiError')) {
+                            <span>{{ formGroup.get('estilo')?.getError('apiError') }}</span>
+                        }
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label>Fonte de Luz</mat-label>
+                    <input matInput type="text" formControlName="tipoDeFonteDeLuz">
+                    <mat-error *ngIf="formGroup.get('tipoDeFonteDeLuz')?.errors && 
+                                      formGroup.get('tipoDeFonteDeLuz')?.touched">
+                        {{getErrorMessage('tipoDeFonteDeLuz', formGroup.get('tipoDeFonteDeLuz')?.errors)}}
+
+                        @if (formGroup.get('tipoDeFonteDeLuz')?.hasError('apiError')) {
+                            <span>{{ formGroup.get('tipoDeFonteDeLuz')?.getError('apiError') }}</span>
+                        }
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label>Cor</mat-label>
+                    <input matInput type="text" formControlName="cor">
+                    <mat-error *ngIf="formGroup.get('cor')?.errors && 
+                                      formGroup.get('cor')?.touched">
+                        @if (formGroup.get('cor')?.errors?.['required']) {
+                            <span>A cor deve ser informado.</span>
+                        } 
+                        @if (formGroup.get('cor')?.hasError('apiError')) {
+                            <span>{{ formGroup.get('cor')?.getError('apiError') }}</span>
+                        }
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label>Marca</mat-label>
+                    <input matInput type="text" formControlName="marca">
+                    <mat-error *ngIf="formGroup.get('marca')?.errors && 
+                                      formGroup.get('marca')?.touched">
+                        @if (formGroup.get('marca')?.errors?.['required']) {
+                            <span>A marca deve ser informado.</span>
+                        } 
+                        @if (formGroup.get('marca')?.hasError('apiError')) {
+                            <span>{{ formGroup.get('marca')?.getError('apiError') }}</span>
+                        }
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label>Descrição</mat-label>
+                    <input matInput type="text" formControlName="descricao">
+                    <mat-error *ngIf="formGroup.get('descricao')?.errors && 
+                                      formGroup.get('descricao')?.touched">
+                        @if (formGroup.get('descricao')?.errors?.['required']) {
+                            <span>A descricao deve ser informado.</span>
+                        } 
+                        @if (formGroup.get('descricao')?.hasError('apiError')) {
+                            <span>{{ formGroup.get('descricao')?.getError('apiError') }}</span>
+                        }
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label>Preço</mat-label>
+                    <input matInput type="text" formControlName="valor">
+                    <mat-error *ngIf="formGroup.get('valor')?.errors && 
+                                      formGroup.get('valor')?.touched">
+                        @if (formGroup.get('valor')?.errors?.['required']) {
+                            <span>O valor deve ser informado.</span>
+                        } 
+                        @if (formGroup.get('valor')?.hasError('apiError')) {
+                            <span>{{ formGroup.get('valor')?.getError('apiError') }}</span>
+                        }
+                    </mat-error>
+                </mat-form-field>
+            </form>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button 
+                    color="primary" 
+                    (click)="salvar()">
+                    <!-- [disabled]="formGroup.invalid">  -->
+                Salvar 
+            </button>
+            <button mat-raised-button 
+                    *ngIf="formGroup?.get('id')?.value"
+                    color="warn" 
+                    (click)="excluir()"
+                    [disabled]="formGroup.invalid"> 
+                Excluir 
+            </button>
+            <button mat-raised-button  
+                (click)="voltarPagina()">
+                Cancelar 
+            </button>
+
+        </mat-card-actions>
+    </mat-card>
+</div>
+
