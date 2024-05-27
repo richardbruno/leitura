@@ -1,0 +1,105 @@
+<mat-toolbar>
+    <span class="toolbar-title">Perfil de Usuário</span>
+</mat-toolbar>
+<div class="form-container">
+    <mat-card>
+        <mat-card-content>
+            <form [formGroup]="formGroup">
+                <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label>Usuário</mat-label>
+                    <input matInput type="text" formControlName="nomeUsuario"> 
+                    <mat-error *ngIf="formGroup.get('nomeUsuario')?.errors && 
+                                      formGroup.get('nomeUsuario')?.touched">
+                        @if (formGroup.get('nomeUsuario')?.errors?.['required']) {
+                            <span>O nome de usuário deve ser informado.</span>
+                        } 
+                        @if (formGroup.get('nomeUsuario')?.errors?.['minlength']) {
+                            <span>O nome deve possuir ao menos 4 caracteres.</span>
+                        }
+                        @if (formGroup.get('nomeUsuario')?.hasError('apiError')) {
+                            <span>{{ formGroup.get('nomeUsuario')?.getError('apiError') }}</span>
+                        }
+                    </mat-error>
+                </mat-form-field>
+                
+                <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label>E-mail</mat-label>
+                    <input matInput type="text" formControlName="email">
+                    <mat-error *ngIf="formGroup.get('email')?.errors && 
+                                      formGroup.get('email')?.touched">
+                        @if (formGroup.get('email')?.errors?.['required']) {
+                            <span>O email deve ser informado.</span>
+                        } 
+                        @if (formGroup.get('email')?.hasError('apiError')) {
+                            <span>{{ formGroup.get('email')?.getError('apiError') }}</span>
+                        }
+                    </mat-error>
+                </mat-form-field>
+                <!-- <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label>Senha</mat-label>
+                    <input matInput type="text" formControlName="senha">
+                    <mat-error *ngIf="formGroup.get('senha')?.errors && 
+                                      formGroup.get('senha')?.touched">
+                        @if (formGroup.get('senha')?.errors?.['required']) {
+                            <span>A senha deve ser informado.</span>
+                        } 
+                        @if (formGroup.get('senha')?.hasError('apiError')) {
+                            <span>{{ formGroup.get('senha')?.getError('apiError') }}</span>
+                        }
+                    </mat-error>
+                </mat-form-field> -->
+                <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label>Telefone</mat-label>
+                    <input matInput type="text" formControlName="telefone">
+                    <mat-error *ngIf="formGroup.get('telefone')?.errors && 
+                                      formGroup.get('telefone')?.touched">
+                        @if (formGroup.get('telefone')?.errors?.['required']) {
+                            <span>o telefone deve ser informado.</span>
+                        } 
+                        @if (formGroup.get('telefone')?.hasError('apiError')) {
+                            <span>{{ formGroup.get('telefone')?.getError('apiError') }}</span>
+                        }
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label>CEP</mat-label>
+                    <input matInput type="text" formControlName="cep">
+                    <mat-error *ngIf="formGroup.get('cep')?.errors && 
+                                      formGroup.get('cep')?.touched">
+                        @if (formGroup.get('cep')?.errors?.['required']) {
+                            <span>O cep deve ser informado.</span>
+                        } 
+                        @if (formGroup.get('cep')?.hasError('apiError')) {
+                            <span>{{ formGroup.get('cep')?.getError('apiError') }}</span>
+                        }
+                    </mat-error>
+                </mat-form-field>
+            </form>
+        </mat-card-content>
+        <mat-card-actions>
+
+            <button mat-flat-button
+                    color="warn"
+                    class="buttonPass"
+                    routerLink="/perfil/editpass">
+                    <!-- [disabled]="formGroup.invalid">  -->
+                <mat-icon>password</mat-icon>
+                Alterar Senha 
+            </button>
+        
+            <button mat-raised-button 
+                    color="primary" 
+                    (click)="salvar()">
+                    <!-- [disabled]="formGroup.invalid">  -->
+                Salvar 
+            </button>
+
+            <button mat-raised-button  
+                (click)="voltarPagina()">
+                Cancelar 
+            </button>
+
+        </mat-card-actions>
+    </mat-card>
+</div>
+

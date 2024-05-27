@@ -3,11 +3,11 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(to right, #6E45E2, #FF6636);
+  background: #F1F1F1;
 }
 
 .login-box {
-  background: #fff;
+  background: #ffffff;
   padding: 30px;
   border-radius: 8px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
@@ -34,14 +34,21 @@
   margin: 10px 0;
 }
 
-.login-button {
+button[mat-raised-button] {
   width: 100%;
   margin-top: 20px;
-  background: #FF6636;
+  background: #009dac;
   color: #fff;
   transition: background 0.3s;
 }
 
 .login-button:hover {
-  background: #FF5722;
+  background: #00727c;
+}
+
+.href{
+  position: absolute;
+  left: 56%;
+  bottom: 28%;
+  margin-left: 15px;
 }

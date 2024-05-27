@@ -16,7 +16,8 @@ import { LivroFormComponent } from './components/cadastros/livro/livro-form/livr
 import { EditoraFormComponent } from './components/cadastros/editora/editora-form/editora-form.component';
 import { ProdutoFormComponent } from './components/cadastros/produto/produto-form/produto-form.component';
 import { UsuarioFormComponent } from './components/cadastros/usuario/usuario-form/usuario-form.component';
-
+import { PerfilFormComponent } from './components/perfil/perfil-form.component';
+import { EditSenhaFormComponent } from './components/perfil/editSenha/editSenha.component';
 
 
 export const routes: Routes = [
@@ -55,6 +56,9 @@ export const routes: Routes = [
             { path: 'livros', component: ConsultaCardListComponent, title: 'Livros à Venda'},
             { path: 'login', component: LoginComponent, title: 'Login'},
             { path: 'carrinho', component: CarrinhoComponent, title: 'Carrinho de Compras'},
+
+            { path: 'perfil', component: PerfilFormComponent, title: 'Perfil de Usuário'},
+            { path: 'perfil/editpass', component: EditSenhaFormComponent, title: 'Alterar Senha'},
         ]
 
     },
