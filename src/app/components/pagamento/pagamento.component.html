@@ -1,0 +1,82 @@
+<mat-card class="titulo">Forma de Pagamento</mat-card>
+<body>
+  <div class="checkout-container">
+    <h2>Checkout</h2>
+    <div class="container responsive-grid">
+      <ng-container>
+        <form class="example-form">
+
+                <mat-form-field appearance="fill" class="input1">
+                  <mat-label>Título</mat-label>
+                    <input matInput type="text" formControlName="nomeTitular">
+                    <mat-error *ngIf="formGroup.get('nomeTitular')?.errors?.['required']">
+                      O título deve ser informado.
+                    </mat-error>
+                    <mat-error *ngIf="formGroup.get('nomeTitular')?.errors?.['minlength']">
+                      O título deve possuir ao menos 4 caracteres.
+                    </mat-error>
+                    <mat-error *ngIf="formGroup.get('nomeTitular')?.hasError('apiError')">
+                      {{ formGroup.get('nomeTitular')?.getError('apiError') }}
+                    </mat-error>
+                </mat-form-field>
+  
+          <mat-form-field appearance="fill" class="input2">
+            <mat-label>Número do Cartão</mat-label>
+                    <input matInput type="text" formControlName="numCartao">
+                    <mat-error *ngIf="formGroup.get('numCartao')?.errors && 
+                                      formGroup.get('numCartao')?.touched">
+                        @if (formGroup.get('numCartao')?.errors?.['required']) {
+                            <span>O titulo deve ser informado.</span>
+                        } 
+                        @if (formGroup.get('numCartao')?.errors?.['minlength']) {
+                            <span>O titulo deve possuir ao menos 4 caracteres.</span>
+                        }
+                        @if (formGroup.get('numCartao')?.hasError('apiError')) {
+                            <span>{{ formGroup.get('titulo')?.getError('apiError') }}</span>
+                        }
+                    </mat-error>
+          </mat-form-field>
+  
+          <mat-form-field appearance="fill" class="input3">
+            <mat-label>Vencimento</mat-label>
+            <input matInput type="text" formControlName="vencimento">
+                    <mat-error *ngIf="formGroup.get('vencimento')?.errors && 
+                                      formGroup.get('vencimento')?.touched">
+                        @if (formGroup.get('vencimento')?.errors?.['required']) {
+                            <span>O titulo deve ser informado.</span>
+                        } 
+                        @if (formGroup.get('vencimento')?.errors?.['minlength']) {
+                            <span>O titulo deve possuir ao menos 4 caracteres.</span>
+                        }
+                        @if (formGroup.get('vencimento')?.hasError('apiError')) {
+                            <span>{{ formGroup.get('titulo')?.getError('apiError') }}</span>
+                        }
+                    </mat-error>
+          </mat-form-field>
+  
+          <mat-form-field appearance="fill" class="input4">
+            <mat-label>CVV</mat-label>
+            <input matInput type="text" formControlName="cvv">
+                    <mat-error *ngIf="formGroup.get('cvv')?.errors && 
+                                      formGroup.get('cvv')?.touched">
+                        @if (formGroup.get('cvv')?.errors?.['required']) {
+                            <span>O titulo deve ser informado.</span>
+                        } 
+                        @if (formGroup.get('cvv')?.errors?.['minlength']) {
+                            <span>O titulo deve possuir ao menos 4 caracteres.</span>
+                        }
+                        @if (formGroup.get('cvv')?.hasError('apiError')) {
+                            <span>{{ formGroup.get('titulo')?.getError('apiError') }}</span>
+                        }
+                    </mat-error>
+          </mat-form-field>
+  
+        </form>
+        
+        <button mat-button routerLink="/carrinho" class="voltar-btn" >Voltar</button>
+        <button mat-button routerLink="/carrinho/pagamento/finalizacao" style="color: white;" class="finalizarCompra" >Finalizar Compra</button>
+      </ng-container>
+      
+    </div>
+  </div>
+</body>
