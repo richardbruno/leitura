@@ -7,7 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Data, Router, RouterModule } from '@angular/router';
 import { Usuario } from '../../models/usuario.model';
 import { UsuarioService } from '../../services/usuario.service';
 import {MatIconModule} from '@angular/material/icon';
@@ -22,6 +22,12 @@ import {MatIconModule} from '@angular/material/icon';
   styleUrl: './perfil-form.component.css'
 })
 export class PerfilFormComponent {
+
+  dia!: number;
+  mes!: number;
+  ano!: number;
+  
+  
 
   formGroup: FormGroup;
   constructor(private formBuilder: FormBuilder,
@@ -59,10 +65,32 @@ export class PerfilFormComponent {
     this.location.back();
   }
 
+  invertDate(date: Date): Date {
+    // Obter os componentes da data original
+    const day = date.getDate();
+    const month = date.getMonth() + 1; // getMonth() retorna meses de 0 a 11, então adicionamos 1
+    const year = date.getFullYear();
+
+    // Crie uma nova data com os componentes invertidos (ano, mês, dia)
+    const invertedDateStr = `${year}-${month}-${day}`;
+    const invertedDate = new Date(invertedDateStr);
+
+    return invertedDate;
+}
+
   salvar() {
     // marca todos os campos do formulario como 'touched'
     this.formGroup.markAllAsTouched();
     if (this.formGroup.valid) {
+      
+
+      const currentDate = this.formGroup.get('dataDeNascimento')?.value;
+      if (currentDate) {
+        const invertedDate = this.invertDate(new Date(currentDate));
+        this.formGroup.get('dataDeNascimento')?.setValue(invertedDate);
+      }
+
+
       const usuario = this.formGroup.value;
 
       console.log('if')
@@ -71,6 +99,7 @@ export class PerfilFormComponent {
       const operacao = usuario.id == null
       ? this.usuarioService.insert(usuario)
       : this.usuarioService.update(usuario);
+      console.log(usuario)
 
       // realiza a operacao e trata a resposta.
       operacao.subscribe({
