@@ -25,6 +25,10 @@ export class UsuarioService {
     return this.httpClient.get<Usuario[]>(`${this.baseUrl}/getAll/`,{params} );
   }
 
+  getImage(nomeImagem: string): Observable<Blob> {
+    return this.httpClient.get(`${this.baseUrl}/image/download/${nomeImagem}`, { responseType: 'blob' });
+  }
+
   findById(id: string): Observable<Usuario> {
     return this.httpClient.get<Usuario>(`${this.baseUrl}/search/${id}`);
   }

@@ -89,8 +89,7 @@ export class PerfilFormComponent {
         const invertedDate = this.invertDate(new Date(currentDate));
         this.formGroup.get('dataDeNascimento')?.setValue(invertedDate);
       }
-
-
+      
       const usuario = this.formGroup.value;
 
       console.log('if')

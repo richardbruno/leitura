@@ -16,6 +16,10 @@ export class LivroService {
     return this.httpClient.get<Livro[]>(`${this.baseUrl}/getAll`);
   }
 
+  getImage(nomeImagem: string): Observable<Blob> {
+    return this.httpClient.get(`${this.baseUrl}/image/download/${nomeImagem}`, { responseType: 'blob' });
+  }
+
   findById(id: string): Observable<Livro> {
     return this.httpClient.get<Livro>(`${this.baseUrl}/search/${id}`);
   }

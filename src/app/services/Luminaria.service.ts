@@ -25,6 +25,10 @@ export class LuminariaService {
     return this.httpClient.get<Produto[]>(`${this.baseUrl}/getAll/`, {params});
   }
 
+  getImage(nomeImagem: string): Observable<Blob> {
+    return this.httpClient.get(`${this.baseUrl}/image/download/${nomeImagem}`, { responseType: 'blob' });
+  }
+
   findById(id: string): Observable<Produto> {
     return this.httpClient.get<Produto>(`${this.baseUrl}/search/${id}`);
   }
