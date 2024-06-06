@@ -39,5 +39,36 @@ export class ConsultaService {
   countByNome(nome: string): Observable<number> {
     return this.http.get<number>(`${this.baseUrl}/search/${nome}/count`);
   }
+  getUrlImagem(nomeImagem: string): string {
+    return `${this.baseUrl}/image/download/${nomeImagem}`;
+  }
 
+  uploadImagem(id: number, nomeImagem: string, imagem: File): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('id', id.toString());
+    formData.append('nomeImagem', imagem.name);
+    formData.append('imagem', imagem, imagem.name);
+    
+    return this.http.patch<Consulta>(`${this.baseUrl}/image/upload`, formData);
+  }
+
+  save(consulta: Consulta): Observable<Consulta> {
+    const obj = {
+      nome: consulta.nome,
+      preco: consulta.preco
+    }
+    return this.http.post<Consulta>(`${this.baseUrl}`, obj);
+  }
+
+  update(consulta: Consulta): Observable<Consulta> {
+    const obj = {
+      nome: consulta.nome,
+      preco: consulta.preco
+    }
+    return this.http.put<Consulta>(`${this.baseUrl}/${consulta.id}`, obj);
+  }
+
+  delete(consulta: Consulta): Observable<any> {
+    return this.http.delete<Consulta>(`${this.baseUrl}/${consulta.id}`);
+  }
 }

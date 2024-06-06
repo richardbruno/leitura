@@ -3,4 +3,5 @@ export class Consulta {
   nome!: string;
   preco!: number;
   quantidade!: number;
+    nomeImagem!: string;
 }

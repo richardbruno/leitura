@@ -12,39 +12,17 @@ import { UserTemplateComponent } from './components/template/user-template/user-
 import { AdminTemplateComponent } from './components/template/admin-template/admin-template.component';
 import { ConsultaCardListComponent } from './components/consulta-card-list/consulta-card-list.component';
 import { CarrinhoComponent } from './components/carrinho/carrinho.component';
+import { PagamentoComponent } from './components/pagamento/pagamento.component';
 import { LivroFormComponent } from './components/cadastros/livro/livro-form/livro-form.component';
 import { EditoraFormComponent } from './components/cadastros/editora/editora-form/editora-form.component';
 import { ProdutoFormComponent } from './components/cadastros/produto/produto-form/produto-form.component';
 import { UsuarioFormComponent } from './components/cadastros/usuario/usuario-form/usuario-form.component';
 import { PerfilFormComponent } from './components/perfil/perfil-form.component';
 import { EditSenhaFormComponent } from './components/perfil/editSenha/editSenha.component';
+import { PagAprovadoComponent } from './components/pagamento/pagAprovado/pagAprovado.component';
 
 
 export const routes: Routes = [
-    // { path: 'login', component: LoginComponent, title: 'Login'},
-    
-    // { path: 'livro', component: LivroComponent, title: 'Livro'},
-    // { path: 'livro/list', component: LivroListComponent, title: 'Lista de Livros'},
-    // { path: 'livro/edit/:id', component: LivroComponent, resolve: {livro: livroResolver}} , 
-
-    // { path: 'produto', component: ProdutoComponent, title: 'Produto'},
-    // { path: 'produto/list', component: ProdutoListComponent, title: 'Lista de Produtos'},
-    // { path: 'produto/edit/:id', component: ProdutoComponent, resolve: {produto: produtoResolver}} , 
-    // { path: 'luminaria', component: ProdutoComponent, title: 'luminaria'},
-    // { path: 'luminaria/list', component: ProdutoListComponent, title: 'Lista de luminaria'},
-
-    // { path: 'usuario', component: UsuarioComponent, title: 'Usuario'},
-    // { path: 'autor', component: AutorComponent, title: 'Autor'},
-    // { path: 'usuario/list', component: UsuarioListComponent, title: 'Lista de Usuários'},
-    // { path: 'usuario/edit/:id', component: UsuarioComponent, resolve: {usuario: usuarioResolver}} , 
-
-    // { path: 'editora', component: EditoraComponent, title: 'Editora'},
-    // { path: 'editora/list', component: EditoraListComponent, title: 'Lista de Editoras'},
-    // { path: 'editora/edit/:id', component: EditoraComponent, resolve: {editora: editoraResolver}} , 
-
-    // { path: 'cor', component: CorComponent, title: 'cor'},
-    // { path: 'cor/list', component: CorListComponent, title: 'Lista de cor'},
-
 
     { 
         path: '', 
@@ -53,9 +31,11 @@ export const routes: Routes = [
         children: [
             {path: '', pathMatch: 'full', redirectTo: 'livros'},
 
-            { path: 'livros', component: ConsultaCardListComponent, title: 'Livros à Venda'},
+            { path: 'livros', component: ConsultaCardListComponent, title: 'Início'},
             { path: 'login', component: LoginComponent, title: 'Login'},
             { path: 'carrinho', component: CarrinhoComponent, title: 'Carrinho de Compras'},
+            { path: 'carrinho/pagamento', component: PagamentoComponent, title: 'Checkout'},
+            { path: 'carrinho/pagamento/finalizacao', component: PagAprovadoComponent, title: 'Finalização'},
 
             { path: 'perfil', component: PerfilFormComponent, title: 'Perfil de Usuário'},
             { path: 'perfil/editpass', component: EditSenhaFormComponent, title: 'Alterar Senha'},
