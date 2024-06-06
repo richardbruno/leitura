@@ -4,6 +4,6 @@ export class Usuario {
     cpf!: number;
     email!: string;
     senha!: string;
-    telefone!: string;
+    dataDeNacimento!: Date;
     cep!: number;
 }

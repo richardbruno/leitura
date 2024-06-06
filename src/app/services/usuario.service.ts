@@ -30,7 +30,7 @@ export class UsuarioService {
   }
 
   insert(usuario: Usuario): Observable<Usuario> {
-    return this.httpClient.post<Usuario>(`${this.baseUrl}/insert/`, usuario);
+    return this.httpClient.post<Usuario>(`${this.baseUrl}/insertsimpeles/`, usuario);
   }
   
   update(usuario: Usuario): Observable<Usuario> {

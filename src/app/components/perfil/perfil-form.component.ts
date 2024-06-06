@@ -45,7 +45,7 @@ export class PerfilFormComponent {
             Validators.compose([Validators.required,])],
       senha: [(usuario && usuario.senha) ? usuario.senha : '', 
             Validators.compose([Validators.required,])],
-      telefone: [(usuario && usuario.telefone) ? usuario.telefone : '', 
+      dataDeNacimento: [(usuario && usuario.dataDeNacimento) ? usuario.dataDeNacimento : '', 
             Validators.compose([Validators.required])],
       cep: [(usuario && usuario.cep) ? usuario.cep : '', 
             Validators.compose([Validators.required,
@@ -65,6 +65,8 @@ export class PerfilFormComponent {
     if (this.formGroup.valid) {
       const usuario = this.formGroup.value;
 
+      console.log('if')
+
       // operacao obtem o retorno de um observable de insert ou update
       const operacao = usuario.id == null
       ? this.usuarioService.insert(usuario)
@@ -72,7 +74,10 @@ export class PerfilFormComponent {
 
       // realiza a operacao e trata a resposta.
       operacao.subscribe({
-        next: () => this.voltarPagina(),
+        next: () => {
+          this.voltarPagina()
+          console.log('deu certo')
+        },
         error: (error: HttpErrorResponse) => {
           console.log('Erro ao salvar' + JSON.stringify(error));
           this.tratarErros(error);

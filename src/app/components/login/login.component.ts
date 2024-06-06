@@ -68,4 +68,6 @@ export class LoginComponent implements OnInit {
       horizontalPosition: "center" // Allowed values are 'start' | 'center' | 'end' | 'left' | 'right'
     });
   }
+
+  
 }

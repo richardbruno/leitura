@@ -44,7 +44,7 @@ export class UsuarioFormComponent {
             Validators.compose([Validators.required,])],
       senha: [(usuario && usuario.senha) ? usuario.senha : '', 
             Validators.compose([Validators.required,])],
-      telefone: [(usuario && usuario.telefone) ? usuario.telefone : '', 
+      telefone: [(usuario && usuario.dataDeNacimento) ? usuario.dataDeNacimento : '', 
             Validators.compose([Validators.required])],
       cep: [(usuario && usuario.cep) ? usuario.cep : '', 
             Validators.compose([Validators.required,

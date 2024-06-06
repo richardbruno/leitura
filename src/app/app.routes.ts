@@ -45,6 +45,7 @@ export const routes: Routes = [
     // { path: 'cor', component: CorComponent, title: 'cor'},
     // { path: 'cor/list', component: CorListComponent, title: 'Lista de cor'},
 
+    { path: 'perfil', component: PerfilFormComponent, title: 'Perfil de Usuário'},
 
     { 
         path: '', 
