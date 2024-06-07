@@ -12,6 +12,7 @@ type Card = {
   idConsulta: number;
   titulo: string;
   preco: number;
+  urlImagem: string;
 }
 
 @Component({
@@ -48,7 +49,8 @@ export class ConsultaCardListComponent implements OnInit {
       cards.push({
         idConsulta: consulta.id,
         titulo: consulta.nome,
-        preco: consulta.preco
+        preco: consulta.preco,
+        urlImagem: this.consultaService.getUrlImagem(consulta.nomeImagem),
       });
     });
     this.cards.set(cards);

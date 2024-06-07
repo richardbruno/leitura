@@ -10,8 +10,12 @@ img {
 
 .responsive-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(5, minmax(270px, 1fr));
+    gap: 0px;
+}
+
+.matcard{
+    width: 80%;
 }
 
 .centered-text {
@@ -19,4 +23,27 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.addbtn{
+    background-color: #00ac87;
+}
+
+.addbtn:hover{
+    background-color: #00745a;
+}
+
+.body{
+    background-color: #F1F1F1;
+
+}
+
+.divCards{
+    display: grid;
+    place-items: center; 
+    height: 100vh;
+}
+
+.divImg{
+    background-color: #00745a;
 }
