@@ -22,11 +22,6 @@ import {MatIconModule} from '@angular/material/icon';
   styleUrl: './perfil-form.component.css'
 })
 export class PerfilFormComponent {
-
-  dia!: number;
-  mes!: number;
-  ano!: number;
-  
   
 
   formGroup: FormGroup;

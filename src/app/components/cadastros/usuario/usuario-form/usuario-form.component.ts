@@ -29,28 +29,27 @@ export class UsuarioFormComponent {
     private activatedRoute: ActivatedRoute,
     private location: Location) {
 
-    const usuario: Usuario = activatedRoute.snapshot.data['usuario'];
+      const usuario: Usuario = activatedRoute.snapshot.data['usuario'];
 
-    this.formGroup = formBuilder.group({
-      id: [(usuario && usuario.id) ? usuario.id : null],
-      nomeUsuario: [(usuario && usuario.nomeUsuario) ? usuario.nomeUsuario : '', 
-            Validators.compose([Validators.required, 
-                                Validators.minLength(4)])],
-      cpf: [(usuario && usuario.cpf) ? usuario.cpf : '', 
-            Validators.compose([Validators.required,
-                                Validators.minLength(14),
-                                Validators.maxLength(14)])],
-      email: [(usuario && usuario.email) ? usuario.email : '', 
-            Validators.compose([Validators.required,])],
-      senha: [(usuario && usuario.senha) ? usuario.senha : '', 
-            Validators.compose([Validators.required,])],
-      telefone: [(usuario && usuario.dataDeNacimento) ? usuario.dataDeNacimento : '', 
-            Validators.compose([Validators.required])],
-      cep: [(usuario && usuario.cep) ? usuario.cep : '', 
-            Validators.compose([Validators.required,
-                                Validators.minLength(8),
-                                Validators.maxLength(8)])],                                                                                         
-    });
+      this.formGroup = formBuilder.group({
+        id: [(usuario && usuario.id) ? usuario.id : null],
+        nomeUsuario: [(usuario && usuario.nomeUsuario) ? usuario.nomeUsuario : '', 
+              Validators.compose([Validators.required])],
+        cpf: [(usuario && usuario.cpf) ? usuario.cpf : '', 
+              Validators.compose([Validators.required,
+                                  Validators.minLength(14),
+                                  Validators.maxLength(14)])],
+        email: [(usuario && usuario.email) ? usuario.email : '', 
+              Validators.compose([Validators.required,])],
+        senha: [(usuario && usuario.senha) ? usuario.senha : '', 
+              Validators.compose([Validators.required,])],
+        dataDeNacimento: [(usuario && usuario.dataDeNacimento) ? usuario.dataDeNacimento : '', 
+              Validators.compose([Validators.required])],
+        cep: [(usuario && usuario.cep) ? usuario.cep : '', 
+              Validators.compose([Validators.required,
+                                  Validators.minLength(8),
+                                  Validators.maxLength(8)])],                                                                                         
+      });
 
   }
 
@@ -58,11 +57,32 @@ export class UsuarioFormComponent {
     this.location.back();
   }
 
+  invertDate(date: Date): Date {
+    // Obter os componentes da data original
+    const day = date.getDate();
+    const month = date.getMonth() + 1; // getMonth() retorna meses de 0 a 11, então adicionamos 1
+    const year = date.getFullYear();
+
+    // Crie uma nova data com os componentes invertidos (ano, mês, dia)
+    const invertedDateStr = `${year}-${month}-${day}`;
+    const invertedDate = new Date(invertedDateStr);
+
+    return invertedDate;
+}
+
+
+
   salvar() {
     // marca todos os campos do formulario como 'touched'
     this.formGroup.markAllAsTouched();
     if (this.formGroup.valid) {
       const usuario = this.formGroup.value;
+
+      const currentDate = this.formGroup.get('dataDeNascimento')?.value;
+      if (currentDate) {
+        const invertedDate = this.invertDate(new Date(currentDate));
+        this.formGroup.get('dataDeNascimento')?.setValue(invertedDate);
+      }
 
       // operacao obtem o retorno de um observable de insert ou update
       const operacao = usuario.id == null
